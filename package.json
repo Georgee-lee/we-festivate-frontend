@@ -1,0 +1,19 @@
+{
+  "name": "we-festivate-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wecode-bootcamp-korea/we-festivate-frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wecode-bootcamp-korea/we-festivate-frontend/issues"
+  },
+  "homepage": "https://github.com/wecode-bootcamp-korea/we-festivate-frontend#readme"
+}
