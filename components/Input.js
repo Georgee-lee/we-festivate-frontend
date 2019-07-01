@@ -13,10 +13,12 @@ const Input = (props) => {
 }
 
 const InputBox = styled.input`
-  width: 50%;
-  height: 30px;
-  border-radius: 5px;
+  width: 88%;
+  height: 50px;
+  padding-left: 50px;
   margin-bottom: 20px;
+  border: none;
+  border-bottom: 1px solid black;
   outline: none;
 `
 
