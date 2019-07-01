@@ -1,13 +1,24 @@
 import styled from 'styled-components';
 
-export const LoginButton = (props) => {
+export const GoogleLoginButton = (props) => {
   return (
-    <LoginBtn 
+    <GoogleLoginBtn 
       type='button'
       onClick={props.onClick}
     >
       Login with Google
-    </LoginBtn>
+    </GoogleLoginBtn>
+  )
+}
+
+export const LoginButton = (props) => {
+  return (
+    <NormalLoginButton 
+      type='button'
+      onClick={props.onClick}
+    >
+      Login
+    </NormalLoginButton>
   )
 }
 
@@ -17,15 +28,16 @@ export const SubmitButton = (props) => {
       type='button'
       onClick={props.onClick}
     >
-      Login
+      회원가입
     </SubmitBtn>
   )
 }
 
-const LoginBtn = styled.button`
+const GoogleLoginBtn = styled.button`
   background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
   margin: 0.2em;
   padding: 0 15px 0 46px;
+  width: 100%;
   border: none;
   outline: none;
   line-height: 34px;
@@ -37,8 +49,17 @@ const LoginBtn = styled.button`
   margin-bottom: 40px;
 `
 
+const NormalLoginButton = styled.button`
+  width: 100%;
+  height: 50px;
+  font-size: 15px;
+
+  color: white;
+  background-color: blue;
+`
+
 const SubmitBtn = styled.button`
-  width: 70px;
+  width: 100%;
   height: 40px;
   background-color: #32CD32;
   color: white;

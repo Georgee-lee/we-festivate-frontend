@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/wecode-bootcamp-korea/we-festivate-frontend#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-fontawesome": "^0.1.4",
     "@zeit/next-sass": "^1.0.1",
     "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
