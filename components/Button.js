@@ -56,6 +56,8 @@ const NormalLoginButton = styled.button`
 
   color: white;
   background-color: blue;
+
+  outline: none;
 `
 
 const SubmitBtn = styled.button`
