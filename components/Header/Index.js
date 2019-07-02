@@ -22,14 +22,14 @@ const Header = () => {
 const Wrapper = styled.div`
   width: 100%;
   height: 75px;
-  position: relative;
+  position: fixed;
   background-color: white;
   z-index: 10;
 `
 
 const MenuBox = styled.div`
   position: fixed;
-  top: -5px;
+  top: 0;
   right: 0;
   left: 0;
   &::after {
@@ -41,19 +41,20 @@ const MenuBox = styled.div`
 
 const LogoBox = styled.div`
   display: inline-block;
-  width: 180px;
-  height: 81px;
+  width: 200px;
+  height: 80px;
+  margin: -5px 0 0 20px;
   background: url(${props => props.url}) no-repeat;
-  background-size: contain;
+  background-size: cover;
 `
 
 const Ul = styled.ul`
   float: right;
   margin-top: 7px;
-  
+
   color: black;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 17px;
+  font-weight: 700;
 `
 
 const Li = styled.li`

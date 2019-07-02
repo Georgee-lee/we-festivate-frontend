@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Input from '../Input';
+import { Input } from '../Input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faUserEdit, faLock } from '@fortawesome/free-solid-svg-icons'
 import { GoogleLoginButton, LoginButton } from '../Button';

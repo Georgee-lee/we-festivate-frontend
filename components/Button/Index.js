@@ -33,6 +33,17 @@ export const SubmitButton = (props) => {
   )
 }
 
+export const SearchButton = (props) => {
+  return (
+    <SearchBtn
+        type='button'
+        onClick={props.onClick}
+      >
+        Search
+    </SearchBtn>
+  )
+}
+
 const GoogleLoginBtn = styled.button`
   background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
   margin: 0.2em;
@@ -67,4 +78,12 @@ const SubmitBtn = styled.button`
   color: white;
 
   outline: none;
+`
+const SearchBtn = styled.button`
+  width: 100%;
+  height: 45px;
+  border: none;
+  background-color: #59c45b;
+  color: white;
+  font-size: 17px;
 `

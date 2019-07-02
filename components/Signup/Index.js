@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Input from '../Input';
+import { Input } from '../Input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignature, faAddressCard, faUserEdit, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 import { SubmitButton } from '../Button'
