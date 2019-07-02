@@ -14,6 +14,10 @@ app.prepare()
       app.render(req, res, '/index');
     });
 
+    server.get('/auth', (req, res) => {
+      app.render(req, res, '/auth');
+    });
+
     server.get('*', (req, res) => {
       return handle(req, res);
     });
