@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Input = (props) => {
+export const Input = (props) => {
   return (
     <InputBox 
       type={props.type}
@@ -9,6 +9,12 @@ const Input = (props) => {
       name={props.name}
       onChange={(e) => props.onChange(e)}
     />
+  )
+}
+
+export const SearchInput = (props) => {
+  return (
+    <SearchInputBox type="text" />
   )
 }
 
@@ -22,4 +28,13 @@ const InputBox = styled.input`
   outline: none;
 `
 
-export default Input;
+const SearchInputBox = styled.input`
+  width: 84%;
+  padding: 15px;
+  margin-left: 6%;
+  border: none;
+  border-bottom: 1px dotted;
+  outline: none;
+  font-size: 20px;
+  background-color: transparent;
+`
