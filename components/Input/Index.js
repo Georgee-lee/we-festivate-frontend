@@ -14,7 +14,10 @@ export const Input = (props) => {
 
 export const SearchInput = (props) => {
   return (
-    <SearchInputBox type="text" />
+    <SearchInputBox 
+      type="text"
+      placeholder="What event you want? Search it!"
+    />
   )
 }
 

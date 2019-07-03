@@ -4,16 +4,19 @@ import Link from 'next/link';
 const Header = () => {
   return (
     <Wrapper>
+      <GlobalMenu>
+        <Link href='/postlist'>
+          <p style={{ display: 'inline-block', paddingRight: 15, borderRight: '2px solid red', cursor: 'pointer' }}>All Events</p>
+        </Link>
+
+        <Link href='/auth'>
+          <p style={{ display: 'inline-block', paddingLeft: 15, cursor: 'pointer'}}>Login & Signup</p>
+        </Link>
+      </GlobalMenu>
       <MenuBox>
-        <LogoBox url='../../static/We_logo.png'/>
-        <Ul>
-          <Link href='/postlist'>
-            <Li>전체 행사보기</Li>
-          </Link>
-          <Link href='/auth'>
-            <Li>Login & Signup</Li>
-          </Link>
-        </Ul>
+        <Link href='/'>
+          <LogoBox url='../../static/We_logo.png'/>
+        </Link>
       </MenuBox>
     </Wrapper>
   );
@@ -21,17 +24,29 @@ const Header = () => {
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 75px;
+  height: 30px;
   position: fixed;
-  background-color: white;
+  background-color: black;
   z-index: 10;
+`
+
+const GlobalMenu = styled.div`
+  float: right;
+  color: white;
+  font-weight: bold;
+  margin: -10px 65px 0 0;
+  box-sizing: border-box;
 `
 
 const MenuBox = styled.div`
   position: fixed;
-  top: 0;
+  top: 5px;
   right: 0;
   left: 0;
+  height: 50px;
+  margin-top: 20px;
+  background-color: white;
+  box-shadow: 0 3px 2px -2px gray;
   &::after {
     display: block;
     content: '';
@@ -40,27 +55,13 @@ const MenuBox = styled.div`
 `
 
 const LogoBox = styled.div`
-  display: inline-block;
-  width: 200px;
-  height: 80px;
-  margin: -5px 0 0 20px;
+  display: block;
+  width: 180px;
+  height: 65px;
+  margin: -15px auto 0;
+  cursor: pointer;
   background: url(${props => props.url}) no-repeat;
   background-size: cover;
-`
-
-const Ul = styled.ul`
-  float: right;
-  margin-top: 7px;
-
-  color: black;
-  font-size: 17px;
-  font-weight: 700;
-`
-
-const Li = styled.li`
-  display: inline-block;
-  margin: 25px;
-  cursor: pointer;
 `
 
 export default Header;
