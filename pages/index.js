@@ -5,33 +5,44 @@ import { SearchInput } from '../components/Input'
 import { SearchButton } from '../components/Button'
 import PostList from '../components/PostList';
 import PostLabelBar from '../components/PostLabelBar';
+import listArr from '../static/DummyList';
 
-function Index() {
-  return (
-    <Layout style={{ margin: 0, padding: 0 }}>
-      <Box>
-      <video muted autoPlay loop style={{ width: `100%` }}>
-        <source src="../static/wework.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <SearchWrap>
-        <div>
-          <SearchBox>
-            <div style={{ display: 'inline-block', width: '75%'}}>
-              <SearchInput />
-            </div>
-            <div style={{ display: 'inline-block', width: '17%' }}>
-              <SearchButton />
-            </div>
-          </SearchBox>
+
+class Index extends React.Component {
+
+  render() {
+    return (
+      <Layout style={{ margin: 0, padding: 0 }}>
+        <Box>
+        <video muted autoPlay loop style={{ width: `100%` }}>
+          <source src="../static/wework.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+          <div style={{ width: '85%', margin: '0 auto' }}>
+            <SearchWrap>
+              <div>
+                <SearchBox>
+                  <div style={{ display: 'inline-block', width: '75%'}}>
+                    <SearchInput />
+                  </div>
+                  <div style={{ display: 'inline-block', width: '17%' }}>
+                    <SearchButton />
+                  </div>
+                </SearchBox>
+              </div>
+            </SearchWrap>
+          </div>
+        </Box>
+        
+        <PostLabelBar />
+        <div style={{ width: '85%', margin: '0 auto' }}>
+          <PostList list = {listArr}/>
         </div>
-      </SearchWrap>
-      </Box>
-      <PostLabelBar />
-      <PostList />
-      <PostLabelBar color="white" bgc="#e95349"/>
-    </Layout>
-  );
+        <PostLabelBar color="white" bgc="#e95349"/>
+        
+      </Layout>
+    );
+  }
 }
 
 const Box = styled.div`
