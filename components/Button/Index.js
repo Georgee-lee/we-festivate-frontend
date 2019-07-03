@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 export const GoogleLoginButton = (props) => {
   return (
@@ -38,8 +40,9 @@ export const SearchButton = (props) => {
     <SearchBtn
         type='button'
         onClick={props.onClick}
-      >
-        Search
+    >
+      Search
+      <FontAwesomeIcon icon={faSearch} style={{ paddingLeft: 10 }}/>
     </SearchBtn>
   )
 }
@@ -76,7 +79,6 @@ const SubmitBtn = styled.button`
   height: 40px;
   background-color: #32CD32;
   color: white;
-
   outline: none;
 `
 const SearchBtn = styled.button`
@@ -86,4 +88,5 @@ const SearchBtn = styled.button`
   background-color: #59c45b;
   color: white;
   font-size: 17px;
+  outline: none;
 `

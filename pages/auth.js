@@ -50,6 +50,7 @@ const Wrapper = styled.div`
 
   box-sizing: border-box;
   margin: 0 auto;
+  padding-top: 90px;
   &::after {
     display: block;
     content: '';
