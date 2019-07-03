@@ -28,6 +28,8 @@ const InputBox = styled.input`
   margin-bottom: 20px;
   border: none;
   border-bottom: 1px solid black;
+  background-color: #f1f1f1;
+  
   outline: none;
 `
 

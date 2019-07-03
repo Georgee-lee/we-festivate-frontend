@@ -18,6 +18,7 @@ class Index extends React.Component {
           <source src="../static/wework.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        
           <div style={{ width: '85%', margin: '0 auto' }}>
             <SearchWrap>
               <div>
@@ -34,12 +35,20 @@ class Index extends React.Component {
           </div>
         </Box>
         
-        <PostLabelBar />
-        <div style={{ width: '85%', margin: '0 auto' }}>
+        <PostLabelBar 
+          title="추천 이벤트"
+          subtitle="바로 참여 가능한 이벤트를 한눈에 보실 수 있습니다"
+        />
+
+        <div style={{ width: '65%', margin: '0 auto' }}>
           <PostList list = {listArr}/>
         </div>
-        <PostLabelBar color="white" bgc="#e95349"/>
-        
+        <PostLabelBar
+          title="전체 이벤트" 
+          subtitle="등록된 이벤트 전체를 한눈에 보실 수 있습니다"
+          color="white"
+          bgc="#e95349"
+        />
       </Layout>
     );
   }
@@ -61,9 +70,19 @@ const SearchWrap = styled.div`
 `
 
 const SearchBox = styled.div`
-  width: 90%;
+  width: 85%;
   padding: 20px 0;
+  position: relative;
+  border-top: 4px solid #59c45a;
   background-color: rgba(255, 255, 255, 0.6);
+  :before {
+    position: absolute;
+    top: -36%;
+    left: 6%;
+    content: '';
+    border: 17px solid transparent;
+    border-bottom-color: #59c45a;
+  }
 `
 
 export default Index;
