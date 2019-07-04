@@ -7,7 +7,7 @@ const Footer = () => {
       <LeftBox>
         <Link href='/'>
           <a>
-            <img src='../../static/Logo_W.png' alt='Logo' style={{ display: 'inline-block', margin: '50px 135px' }}/>
+            <img src='../../static/Logo_W.png' alt='Logo' style={{ display: 'block', margin: '50px 135px' }}/>
           </a>
         </Link>
       </LeftBox>
@@ -42,6 +42,7 @@ const RightBox = styled.div`
   width: 70%;
   height: 100%;
 `
+
 
 const TextBox = styled.div`
   box-sizing: border-box;
