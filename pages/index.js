@@ -18,7 +18,7 @@ class Index extends React.Component {
           <source src="../static/wework.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        
+        {/* 동영상 안에 있는 검색창 */}
           <div style={{ width: '65%', margin: '0 auto' }}>
             <SearchWrap>
             <img src='../static/Logo_W.png' alt='logo' style={{ paddingBottom: 10 }}/>
