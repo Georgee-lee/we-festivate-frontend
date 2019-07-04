@@ -21,9 +21,9 @@ const Tagbar = styled.div`
 `
 
 const TextBox = styled.div`
-  width: 80%;
+  width: 65%;
   padding: 35px;
-  margin-left: 15px;
+  margin: 0 auto;
 `
 
 const Headtext = styled.h2`

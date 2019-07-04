@@ -15,7 +15,7 @@ const Header = () => {
       </GlobalMenu>
       <MenuBox>
         <Link href='/'>
-          <LogoBox url='../../static/We_logo.png'/>
+          <LogoBox />
         </Link>
       </MenuBox>
     </Wrapper>
@@ -34,13 +34,13 @@ const GlobalMenu = styled.div`
   float: right;
   color: white;
   font-weight: bold;
-  margin: -10px 65px 0 0;
+  margin: -9px 17% 0 0;
   box-sizing: border-box;
 `
 
 const MenuBox = styled.div`
   position: fixed;
-  top: 5px;
+  top: 10px;
   right: 0;
   left: 0;
   height: 50px;
@@ -58,10 +58,11 @@ const LogoBox = styled.div`
   display: block;
   width: 180px;
   height: 65px;
-  margin: -15px auto 0;
+  margin: -9px 0 0 15%;
   cursor: pointer;
-  background: url(${props => props.url}) no-repeat;
+  background: url('../../static/MainLogo_B.png');
   background-size: cover;
+  background-position: center;
 `
 
 export default Header;
