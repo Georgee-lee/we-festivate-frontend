@@ -66,6 +66,7 @@ const RightBox = styled.div`
   }
 `
 
+
 const TextBox = styled.div`
   box-sizing: border-box;
   width: 80%;
