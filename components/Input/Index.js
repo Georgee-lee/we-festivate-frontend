@@ -7,6 +7,7 @@ export const UserInput = (props) => {
       placeholder={props.placeholder}
       value={props.value}
       name={props.name}
+      required
       onChange={(e) => props.onChange(e)}
     />
   )
@@ -48,6 +49,7 @@ export const DateInput = (props) => {
 const InputBox = styled.input`
   width: 88%;
   height: 50px;
+  font-size: 15px;
   padding-left: 50px;
   margin-bottom: 20px;
   border: none;

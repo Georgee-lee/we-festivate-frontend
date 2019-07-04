@@ -110,11 +110,10 @@ const MoreBtnWrap = styled.div`
   width: 100%;
   height: 60px;
   margin: 20px auto 0;
-  padding: 0 0 0 20px;
 `
 
 const MoreBtnDiv = styled.div`
-  width: 20%;
+  width: 15%;
   height: 100%;
 
   margin: 0 auto;
@@ -122,7 +121,7 @@ const MoreBtnDiv = styled.div`
 
 const InnerBtnDiv = styled.div`
   text-align: center;
-  width: 70%;
+  width: 100%;
   height: 40px;
   line-height: 3;
   border: 1px solid;

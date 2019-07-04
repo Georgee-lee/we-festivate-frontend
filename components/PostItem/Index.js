@@ -3,7 +3,9 @@ import styled from 'styled-components';
 const PostItem = (props) => {
   return (
     <Post>
-      <ImageBox image={props.image} />
+      <ImageBox>
+        <img src={props.image} alt='photo' width='100%' height='100%' />
+      </ImageBox>
       <PostDetailBox>
         <h4 style={{ margin: 0, padding: 10, fontSize: 15 }}><b>{props.title}</b></h4> 
         <p style={{ margin: 0, padding: 10 }}>{props.building_name}</p>
@@ -14,6 +16,8 @@ const PostItem = (props) => {
 
 const Post = styled.div`
   width: 100%;
+  overflow: hidden;
+
   :nth-child(5) {
     grid-column: 1 / 3;
   }
@@ -58,16 +62,32 @@ const Post = styled.div`
 const PostDetailBox = styled.div`
   height: 98px;
   background-color: white;
+  overflow: hidden;
 `
 
 const ImageBox = styled.div`
   width: 100%;
   height: 250px;
   margin-bottom: 1px;
-  background: url(${props => props.image}) no-repeat;
-  background-size: cover;
-  background-position-y: center;
+  overflow: hidden;
   
+  opacity: 1;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+	transition: .3s ease-in-out;
+	-webkit-transition: .3s ease-in-out;
+  
+  &:hover {
+    opacity: .5;
+    -webkit-transform: scale(1.1);
+	  transform: scale(1.1);
+  }
 `
 
 export default PostItem;
+
+/*
+background: url(${props => props.image}) no-repeat;
+  background-size: cover;
+  background-position-y: center;
+*/
