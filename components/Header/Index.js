@@ -34,7 +34,7 @@ const GlobalMenu = styled.div`
   float: right;
   color: white;
   font-weight: bold;
-  margin: -9px 17% 0 0;
+  margin: -9px 10% 0 0;
   box-sizing: border-box;
 `
 
@@ -56,11 +56,11 @@ const MenuBox = styled.div`
 
 const LogoBox = styled.div`
   display: block;
-  width: 180px;
-  height: 65px;
-  margin: -9px 0 0 15%;
+  width: 190px;
+  height: 45px;
+  margin-left: 10%;
   cursor: pointer;
-  background: url('../../static/MainLogo_B.png');
+  background: url('../../static/Logo_B.png');
   background-size: cover;
   background-position: center;
 `

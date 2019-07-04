@@ -23,7 +23,7 @@ const Post = styled.div`
 `
 
 const PostDetailBox = styled.div`
-  height: 100px;
+  height: 98px;
   background-color: white;
 `
 

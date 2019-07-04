@@ -19,8 +19,9 @@ class Index extends React.Component {
           Your browser does not support the video tag.
         </video>
         
-          <div style={{ width: '85%', margin: '0 auto' }}>
+          <div style={{ width: '65%', margin: '0 auto' }}>
             <SearchWrap>
+            <img src='../static/Logo_W.png' alt='logo' style={{ paddingBottom: 10 }}/>
               <div>
                 <SearchBox>
                   <div style={{ display: 'inline-block', width: '75%'}}>
@@ -39,16 +40,20 @@ class Index extends React.Component {
           title="추천 이벤트"
           subtitle="바로 참여 가능한 이벤트를 한눈에 보실 수 있습니다"
         />
-
-        <div style={{ width: '65%', margin: '0 auto' }}>
+        <div style={{ width: '80%', margin: '0 auto' }}>
           <PostList list = {listArr}/>
         </div>
+
         <PostLabelBar
           title="전체 이벤트" 
           subtitle="등록된 이벤트 전체를 한눈에 보실 수 있습니다"
           color="white"
           bgc="#e95349"
         />
+        <div style={{ width: '80%', margin: '0 auto' }}>
+          <PostList list = {listArr}/>
+        </div>
+
       </Layout>
     );
   }
@@ -62,9 +67,9 @@ const Box = styled.div`
 
 const SearchWrap = styled.div`
   position: absolute;
-  bottom: 30%;
+  bottom: 23%;
   left: 20%;
-  width: calc(75vw - 100px);
+  width: 75vw;
   
   margin: 0 auto;
 `
