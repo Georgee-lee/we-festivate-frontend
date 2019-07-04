@@ -20,6 +20,15 @@ const Post = styled.div`
   :nth-child(6) {
     grid-column: 3 / 5;
   }
+
+  @media only screen and (max-width: 1125px) {
+    :nth-child(5) {
+      grid-column: unset;
+    }
+    :nth-child(6) {
+      grid-column: unset;
+    }
+  }
 `
 
 const PostDetailBox = styled.div`
