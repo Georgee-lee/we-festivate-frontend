@@ -89,5 +89,5 @@ const DatePicker = styled.input`
   font-size: 17px;
   font-weight: 300;
 
-  margin-left: 20px;
+  margin-left: 5px;
 `

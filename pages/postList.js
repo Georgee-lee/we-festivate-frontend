@@ -10,6 +10,7 @@ import { SelectButton } from '../components/SelectBar';
 class BoardList extends React.Component {
 
   state = {
+    posts: [],
     title: '',
     start_date: '',
     end_date: '',
@@ -32,7 +33,10 @@ class BoardList extends React.Component {
     e.preventDefault();
     const { title, start_date, end_date, building } = this.state;
     
-    console.log(title, start_date, end_date, building);
+  }
+
+  handleShowMore = () => {
+    // fetch 날려서 데이터 20개 원래 배열에 더 저장하기
   }
 
 
@@ -52,11 +56,13 @@ class BoardList extends React.Component {
               value={building}
               onChange={this.handleSelect}
             />
+            <span style={{ marginLeft: 20 }}>startDate: </span>
             <DateInput
               value={start_date}
               name="start_date"
               onChange={this.handleChange}
             />
+            <span  style={{ marginLeft: 20 }}>endDate: </span>
             <DateInput
               value={end_date}
               name="end_date"
@@ -70,6 +76,13 @@ class BoardList extends React.Component {
         <div style={{ width: '80%', margin: '85px auto 0' }}>
           <PostList list={listArr} />
         </div>
+        <MoreBtnWrap>
+          <MoreBtnDiv>
+            <InnerBtnDiv onClick={this.handleShowMore}>
+              더 불러오기
+            </InnerBtnDiv>
+          </MoreBtnDiv>
+        </MoreBtnWrap>
         {/* 포스트 뿌리기 끝 */}
       </Layout>
     )
@@ -91,6 +104,29 @@ const InnerWrap = styled.div`
   height: 100%;
   margin-left: 12%;
   padding: 10px;
+`
+
+const MoreBtnWrap = styled.div`
+  width: 100%;
+  height: 60px;
+  margin: 20px auto 0;
+  padding: 0 0 0 20px;
+`
+
+const MoreBtnDiv = styled.div`
+  width: 20%;
+  height: 100%;
+
+  margin: 0 auto;
+`
+
+const InnerBtnDiv = styled.div`
+  text-align: center;
+  width: 70%;
+  height: 40px;
+  line-height: 3;
+  border: 1px solid;
+  cursor: pointer;
 `
 
 export default BoardList;
