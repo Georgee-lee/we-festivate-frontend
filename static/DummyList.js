@@ -70,7 +70,7 @@ const listArr = [
     'date': '19-07-04',
     'max_rsvp': '제한없음',
     'current_rsvp': '14'
-   }
+   },
 ]
 
 export default listArr;

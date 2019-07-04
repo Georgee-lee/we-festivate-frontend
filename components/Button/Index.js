@@ -47,6 +47,18 @@ export const SearchButton = (props) => {
   )
 }
 
+export const PostSearchButton = (props) => {
+  return (
+    <PostSearchBtn
+      type='button'
+      onClick={props.onClick}
+    >
+      Search
+      <FontAwesomeIcon icon={faSearch} style={{ paddingLeft: 10 }}/>
+    </PostSearchBtn>
+  )
+}
+
 const GoogleLoginBtn = styled.button`
   background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
   margin: 0.2em;
@@ -89,4 +101,20 @@ const SearchBtn = styled.button`
   color: white;
   font-size: 17px;
   outline: none;
+`
+
+const PostSearchBtn = styled.button`
+  width: 120px;
+  height: 51px;
+  border: none;
+
+  margin-left: 20px;
+
+  background-color: #59c45b;
+  color: white;
+  font-size: 17px;
+  outline: none;
+
+  position: absolute;
+  top: 12px;
 `

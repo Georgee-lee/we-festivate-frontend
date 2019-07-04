@@ -12,7 +12,7 @@ const PostList = (props) => {
           list.map((post, idx) => {
             return (
               <Post
-                key={idx}
+                key={post.idx}
                 title={post.title}
                 building_name={post.building_name}
                 image={post.image}

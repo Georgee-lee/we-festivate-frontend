@@ -66,7 +66,7 @@ const Box = styled.div`
 const SearchWrap = styled.div`
   position: absolute;
   bottom: 23%;
-  width: 80%
+  width: 70%
   max-width: 1200px;
   min-width: 500px;
   

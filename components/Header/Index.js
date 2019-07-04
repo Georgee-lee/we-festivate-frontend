@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <Wrapper>
       <GlobalMenu>
-        <Link href='/postlist'>
+        <Link href='/postList'>
           <p style={{ display: 'inline-block', paddingRight: 15, borderRight: '2px solid red', cursor: 'pointer' }}>All Events</p>
         </Link>
 
@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 `
 
 const GlobalMenu = styled.div`
-  float: right;
+  text-align: right;
   color: white;
   font-weight: bold;
   margin: -9px 10% 0 0;

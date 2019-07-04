@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Input = (props) => {
+export const UserInput = (props) => {
   return (
     <InputBox 
       type={props.type}
@@ -20,6 +20,30 @@ export const SearchInput = (props) => {
     />
   )
 }
+
+export const PostInput = (props) => {
+  return (
+    <PostInputBox
+      type="text"
+      name={props.name}
+      placeholder="Search it!"
+      value={props.value}
+      onChange={props.onChange}
+    />
+  )
+}
+
+export const DateInput = (props) => {
+  return (
+    <DatePicker
+      type="date"
+      name={props.name}
+      value={props.date}
+      onChange={(e) => props.onChange(e)}
+    />
+  )
+}
+
 
 const InputBox = styled.input`
   width: 88%;
@@ -42,4 +66,28 @@ const SearchInputBox = styled.input`
   outline: none;
   font-size: 20px;
   background-color: transparent;
+`
+
+const PostInputBox = styled.input`
+  width: 260px;
+  height: 50px;
+  border: none;
+  outline: none;
+
+  border-bottom: 1px solid gray;
+  font-size: 17px;
+  font-weight: 300;
+`
+
+const DatePicker = styled.input`
+  width: 210px;
+  height: 50px;
+  border: none;
+  outline: none;
+
+  border-bottom: 1px solid gray;
+  font-size: 17px;
+  font-weight: 300;
+
+  margin-left: 20px;
 `
