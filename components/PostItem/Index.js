@@ -1,22 +1,26 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const PostItem = (props) => {
   return (
-    <Post>
-      <ImageBox>
-        <img src={props.image} alt='photo' width='100%' height='100%' />
-      </ImageBox>
-      <PostDetailBox>
-        <h4 style={{ margin: 0, padding: 10, fontSize: 15 }}><b>{props.title}</b></h4> 
-        <p style={{ margin: 0, padding: 10 }}>{props.building_name}</p>
-      </PostDetailBox>
-    </Post>
+    <Link as={`/post/${props.id}`} href={`'/post?${props.id}`}>
+      <Post key={props.id}>
+        <ImageBox>
+          <img src={props.image} alt='photo' width='100%' height='100%' />
+        </ImageBox>
+        <PostDetailBox>
+          <h4 style={{ margin: 0, padding: 10, fontSize: 15 }}><b>{props.title}</b></h4> 
+          <p style={{ margin: 0, padding: 10 }}>{props.building_name}</p>
+        </PostDetailBox>
+      </Post>
+    </Link>
   )
 };
 
 const Post = styled.div`
   width: 100%;
   overflow: hidden;
+  cursor: pointer;
 
   :nth-child(5) {
     grid-column: 1 / 3;

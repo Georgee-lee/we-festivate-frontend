@@ -22,6 +22,12 @@ app.prepare()
       app.render(req, res, '/postList');
     });
 
+    server.get('/post/:id', (req, res) => {
+      const realPage = '/post'
+      const params = { id: req.params.id }
+      app.render(req, res, realPage, params)
+    });
+
     server.get('*', (req, res) => {
       return handle(req, res);
     });

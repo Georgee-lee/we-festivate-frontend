@@ -11,6 +11,7 @@ import listArr from '../static/DummyList';
 class Index extends React.Component {
 
   render() {
+
     return (
       <Layout style={{ margin: 0, padding: 0 }}>
         <Box>
@@ -38,7 +39,7 @@ class Index extends React.Component {
           title="추천 이벤트"
           subtitle="바로 참여 가능한 이벤트를 한눈에 보실 수 있습니다"
         />
-        <div style={{ width: '80%', margin: '0 auto' }}>
+        <div style={{ width: '75%', margin: '0 auto' }}>
           <PostList list = {listArr}/>
         </div>
 
@@ -48,7 +49,7 @@ class Index extends React.Component {
           color="white"
           bgc="#e95349"
         />
-        <div style={{ width: '80%', margin: '0 auto' }}>
+        <div style={{ width: '75%', margin: '0 auto' }}>
           <PostList list = {listArr}/>
         </div>
 
@@ -66,7 +67,7 @@ const Box = styled.div`
 const SearchWrap = styled.div`
   position: absolute;
   bottom: 23%;
-  width: 70%
+  width: 70%;
   max-width: 1200px;
   min-width: 500px;
   
@@ -96,4 +97,5 @@ const SearchBox = styled.div`
   }
 `
 
+export { Box }
 export default Index;
