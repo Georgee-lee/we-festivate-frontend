@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Post from '../PostItem';
+import PostItem from '../PostItem'; // 각각의 포스트 Div
 
 const PostList = (props) => {
 
@@ -11,8 +11,9 @@ const PostList = (props) => {
         {
           list.map((post, idx) => {
             return (
-              <Post
-                key={post.idx}
+              <PostItem
+                key={idx}
+                id={idx}
                 title={post.title}
                 building_name={post.building_name}
                 image={post.image}

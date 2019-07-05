@@ -18,14 +18,14 @@ const Signup = (props) => {
         value={props.id}
         name='id'
         placeholder='Enter your id'
-        onChange={props.handleInput}
+        onChange={props.onChange}
       />
       <FontAwesomeIcon icon={faLock} size="2x" style={{ position: "absolute", top: '30%', left: 3 }} />
       <UserInput
         type='password'
         name='pw'
         placeholder='Enter your password'
-        onChange={props.handleInput}
+        onChange={props.onChange}
       />
       <FontAwesomeIcon icon={faEnvelope} size="2x" style={{ position: "absolute", top: '49%', left: 3 }}/>
       <UserInput
@@ -33,7 +33,7 @@ const Signup = (props) => {
         value={props.email}
         name='email'
         placeholder='Enter your email'
-        onChange={props.handleInput}
+        onChange={props.onChange}
       />
       <FontAwesomeIcon icon={faSignature} size="2x" style={{ position: "absolute", top: '67%', left: 3 }}/>
       <UserInput
@@ -41,7 +41,7 @@ const Signup = (props) => {
         value={props.name}
         name='name'
         placeholder='Enter your name'
-        onChange={props.handleInput}
+        onChange={props.onChange}
       />
       <FontAwesomeIcon icon={faAddressCard} size="2x" style={{ position: "absolute", top: '85%', left: 3 }}/>
       <UserInput
@@ -49,12 +49,12 @@ const Signup = (props) => {
         value={props.profile}
         name='profile'
         placeholder='Enter your profile'
-        onChange={props.handleInput}
+        onChange={props.onChange}
       />
       </LoginWrap>
 
       <LoginBtnbox>
-        <SubmitButton />
+        <SubmitButton onClick={props.onClick}/>
       </LoginBtnbox>
 
     </Rightbox>

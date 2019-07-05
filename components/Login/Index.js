@@ -17,14 +17,14 @@ const Login = (props) => {
           value={props.loginId}
           name='loginId'
           placeholder='Enter your id'
-          onChange={(e) => props.handleInput(e)}
+          onChange={(e) => props.onChange(e)}
         />
         <FontAwesomeIcon icon={faLock} size="2x" style={{ position: "absolute", top: '64%', left: 3 }} />
         <UserInput
           type='password'
           name='loginPw'
           placeholder='Enter your password'
-          onChange={(e) => props.handleInput(e)}
+          onChange={(e) => props.onChange(e)}
         />
       </LoginWrap>
 

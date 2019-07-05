@@ -34,7 +34,7 @@ const GlobalMenu = styled.div`
   text-align: right;
   color: white;
   font-weight: bold;
-  margin: -9px 10% 0 0;
+  margin: -9px 14.5% 0 0;
   box-sizing: border-box;
 `
 
@@ -58,7 +58,7 @@ const LogoBox = styled.div`
   display: block;
   width: 190px;
   height: 45px;
-  margin-left: 10%;
+  margin-left: 14.5%;
   cursor: pointer;
   background: url('../../static/Logo_B.png');
   background-size: cover;

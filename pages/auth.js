@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import styled from 'styled-components';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
@@ -22,6 +23,29 @@ class Auth extends Component {
     })
   }
 
+  handleSignup = () => {
+    const newUser = {
+      user_id: this.state.id,
+      password: this.state.pw,
+      email: this.state.email,
+      name: this.state.name,
+      profile: this.state.profile
+    }
+
+    fetch('http://10.58.6.124:8000/user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    })
+    .then(res => res.json())
+    .then(res => {
+      alert(res.message);
+      Router.push('/auth');
+    });
+  }
+
   render () {
     const { id, email, name, profile, loginId } = this.state;
 
@@ -30,14 +54,15 @@ class Auth extends Component {
         <Wrapper>
           <Login 
             loginId={loginId}
-            handleInput={this.handleInput}
+            onChange={this.handleInput}
           />
           <Signup 
             id={id}
             email={email}
             name={name}
             profile={profile}
-            handleInput={this.handleInput}
+            onChange={this.handleInput}
+            onClick={this.handleSignup}
           />
         </Wrapper>
       </Layout>

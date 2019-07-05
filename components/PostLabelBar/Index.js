@@ -21,7 +21,7 @@ const Tagbar = styled.div`
 `
 
 const TextBox = styled.div`
-  width: 79%;
+  width: 74%;
   padding: 35px;
   margin: 0 auto;
 `
