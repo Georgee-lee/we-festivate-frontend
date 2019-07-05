@@ -73,7 +73,7 @@ class BoardList extends React.Component {
         </SearchWrap>
 
         {/* 포스트 뿌리기 시작 */}
-        <div style={{ width: '80%', margin: '85px auto 0' }}>
+        <div style={{ width: '75%', margin: '85px auto 0' }}>
           <PostList list={listArr} />
         </div>
         <MoreBtnWrap>
