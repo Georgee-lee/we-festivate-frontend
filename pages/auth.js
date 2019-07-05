@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Router from 'next/router';
 import styled from 'styled-components';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
@@ -41,6 +42,7 @@ class Auth extends Component {
     .then(res => res.json())
     .then(res => {
       alert(res.message);
+      Router.push('/auth');
     });
   }
 
