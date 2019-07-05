@@ -16,6 +16,7 @@ export default class RootDocument extends Document {
                       padding: 0;
                       background-color: #f1f1f1;
                       box-sizing: border-box;
+                      height: 100%;
                   }
                 `}
             </style>

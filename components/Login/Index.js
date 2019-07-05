@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Input } from '../Input';
+import { UserInput } from '../Input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faUserEdit, faLock } from '@fortawesome/free-solid-svg-icons'
 import { GoogleLoginButton, LoginButton } from '../Button';
@@ -12,7 +12,7 @@ const Login = (props) => {
       </LoginText>
       <LoginWrap>
       <FontAwesomeIcon icon={faUserEdit} size="2x" style={{ position: "absolute", top: '26%', left: 3 }}/>
-        <Input
+        <UserInput
           type='text'
           value={props.loginId}
           name='loginId'
@@ -20,7 +20,7 @@ const Login = (props) => {
           onChange={(e) => props.handleInput(e)}
         />
         <FontAwesomeIcon icon={faLock} size="2x" style={{ position: "absolute", top: '64%', left: 3 }} />
-        <Input
+        <UserInput
           type='password'
           name='loginPw'
           placeholder='Enter your password'

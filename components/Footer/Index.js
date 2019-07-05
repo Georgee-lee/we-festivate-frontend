@@ -7,7 +7,7 @@ const Footer = () => {
       <LeftBox>
         <Link href='/'>
           <a>
-            <img src='../../static/Logo_W.png' alt='Logo' style={{ display: 'block', margin: '50px 135px' }}/>
+            <ImageBox src='../../static/Logo_W.png' alt='Logo' />
           </a>
         </Link>
       </LeftBox>
@@ -29,18 +29,41 @@ const Wrapper = styled.footer`
   height: 250px;
 
   background-color: black;
+  box-sizing: border-box;
 `
 
 const LeftBox = styled.div`
   float: left;
   width: 30%;
   height: 100%;
+
+  @media only screen and (min-width: 320px) and (max-width: 1130px) {
+    float: none;
+    width: auto;
+    height: auto;
+  }
 `
+
+const ImageBox = styled.img`
+  margin: 50px 0 0 33%;
+
+  @media only screen and (min-width: 320px) and (max-width: 1170px) {
+    margin: 0;
+    padding: 30px 0 0 9%;
+  }
+`
+
 
 const RightBox = styled.div`
   float: right;
   width: 70%;
   height: 100%;
+
+  @media only screen and (min-width: 320px) and (max-width: 1130px) {
+    float: none;
+    height: auto;
+    width: 100%;
+  }
 `
 
 
@@ -51,6 +74,12 @@ const TextBox = styled.div`
   padding: 50px 0 0 0;
   color: #9e9e9e;
   line-height: 28px;
+
+  @media only screen and (min-width: 500px) and (max-width: 1130px) {
+    width: auto;
+    height: auto;
+    padding: 0 0 0 10%;
+  }
 `
 
 export default Footer;

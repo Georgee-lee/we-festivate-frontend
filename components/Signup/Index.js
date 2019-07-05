@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Input } from '../Input';
+import { UserInput } from '../Input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignature, faAddressCard, faUserEdit, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 import { SubmitButton } from '../Button'
@@ -13,7 +13,7 @@ const Signup = (props) => {
       </LoginText>
       <LoginWrap>
       <FontAwesomeIcon icon={faUserEdit} size="2x" style={{ position: "absolute", top: '10%', left: 3 }}/>
-      <Input
+      <UserInput
         type='text'
         value={props.id}
         name='id'
@@ -21,14 +21,14 @@ const Signup = (props) => {
         onChange={props.handleInput}
       />
       <FontAwesomeIcon icon={faLock} size="2x" style={{ position: "absolute", top: '30%', left: 3 }} />
-      <Input
+      <UserInput
         type='password'
         name='pw'
         placeholder='Enter your password'
         onChange={props.handleInput}
       />
       <FontAwesomeIcon icon={faEnvelope} size="2x" style={{ position: "absolute", top: '49%', left: 3 }}/>
-      <Input
+      <UserInput
         type='email'
         value={props.email}
         name='email'
@@ -36,7 +36,7 @@ const Signup = (props) => {
         onChange={props.handleInput}
       />
       <FontAwesomeIcon icon={faSignature} size="2x" style={{ position: "absolute", top: '67%', left: 3 }}/>
-      <Input
+      <UserInput
         type='text'
         value={props.name}
         name='name'
@@ -44,7 +44,7 @@ const Signup = (props) => {
         onChange={props.handleInput}
       />
       <FontAwesomeIcon icon={faAddressCard} size="2x" style={{ position: "absolute", top: '85%', left: 3 }}/>
-      <Input
+      <UserInput
         type='text'
         value={props.profile}
         name='profile'

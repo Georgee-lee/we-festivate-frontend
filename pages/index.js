@@ -18,20 +18,18 @@ class Index extends React.Component {
           <source src="../static/wework.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        
+        {/* 동영상 안에 있는 검색창 */}
           <div style={{ width: '65%', margin: '0 auto' }}>
             <SearchWrap>
             <img src='../static/Logo_W.png' alt='logo' style={{ paddingBottom: 10 }}/>
-              <div>
-                <SearchBox>
-                  <div style={{ display: 'inline-block', width: '75%'}}>
-                    <SearchInput />
-                  </div>
-                  <div style={{ display: 'inline-block', width: '17%' }}>
-                    <SearchButton />
-                  </div>
-                </SearchBox>
-              </div>
+              <SearchBox>
+                <div style={{ display: 'inline-block', width: '75%'}}>
+                  <SearchInput />
+                </div>
+                <div style={{ display: 'inline-block', width: '17%' }}>
+                  <SearchButton />
+                </div>
+              </SearchBox>
             </SearchWrap>
           </div>
         </Box>
@@ -68,14 +66,15 @@ const Box = styled.div`
 const SearchWrap = styled.div`
   position: absolute;
   bottom: 23%;
-  left: 20%;
-  width: 75vw;
+  width: 70%
+  max-width: 1200px;
+  min-width: 500px;
   
   margin: 0 auto;
 `
 
 const SearchBox = styled.div`
-  width: 85%;
+  min-width: 500px;
   padding: 20px 0;
   position: relative;
   border-top: 4px solid #59c45a;
@@ -87,6 +86,13 @@ const SearchBox = styled.div`
     content: '';
     border: 17px solid transparent;
     border-bottom-color: #59c45a;
+  }
+
+  @media only screen and (max-width: 720px) {
+    padding: 0;
+    :before {
+      top: -56%;
+    }
   }
 `
 

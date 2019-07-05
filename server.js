@@ -18,6 +18,10 @@ app.prepare()
       app.render(req, res, '/auth');
     });
 
+    server.get('/postList', (req, res) => {
+      app.render(req, res, '/postList');
+    });
+
     server.get('*', (req, res) => {
       return handle(req, res);
     });
