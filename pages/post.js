@@ -3,6 +3,7 @@ import fetch from 'isomorphic-unfetch';
 import Layout from '../components/Layout';
 import DummyList from '../static/DummyList';
 import { Box } from './index';
+import Map from '../components/Map';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUsers } from '@fortawesome/free-solid-svg-icons'
@@ -47,6 +48,7 @@ class Post extends React.Component {
             {/* 본문이 위치한 곳 */}
             어쩌구저쩌구 으어어어어아아아아ㅏ아으으ㅏ으ㅏ으ㅏ으아ㅡ아
             {/* 지도가 위치한 곳 */}
+            <Map />
           </PostWrap>
         </DetailBox>
         
@@ -65,7 +67,6 @@ const PostBox = styled(Box)`
 
 const DetailBox = styled.div`
   width: 80%;
-  height: 100%;
   margin: -12% auto 15px;
   position: relative;
   box-sizing: border-box;

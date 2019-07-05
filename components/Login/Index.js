@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { UserInput } from '../Input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faUserEdit, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faUserEdit, faLock } from '@fortawesome/free-solid-svg-icons'
 import { GoogleLoginButton, LoginButton } from '../Button';
 
 const Login = (props) => {
