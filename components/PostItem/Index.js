@@ -10,6 +10,7 @@ const PostItem = (props) => {
         <PostDetailBox>
           <h4 style={{ margin: 0, padding: 10, fontSize: 15 }}><b>{props.title}</b></h4> 
           <p style={{ margin: 0, padding: 10 }}>{props.building_name}</p>
+          <p style={{ margin: 0, padding: 10 }}>{props.date}</p>
         </PostDetailBox>
       </Post>
     </Link>
@@ -69,9 +70,3 @@ const PostDetailBox = styled.div`
 `
 
 export default PostItem;
-
-/*
-background: url(${props => props.image}) no-repeat;
-  background-size: cover;
-  background-position-y: center;
-*/

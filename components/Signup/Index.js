@@ -69,6 +69,10 @@ const Rightbox = styled.div`
   box-sizing: border-box;
   padding: 20px;
   margin: 0 auto;
+
+  @media only screen and (max-width: 920px) {
+    float: none; 
+  }
 `
 
 

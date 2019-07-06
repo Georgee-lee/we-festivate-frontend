@@ -81,6 +81,11 @@ const Wrapper = styled.div`
     content: '';
     clear: both;
   }
+
+  @media only screen and (max-width: 920px) {
+    min-width: 590px;
+    width: 100%;
+  }
 `
 
 export default Auth;
