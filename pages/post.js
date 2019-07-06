@@ -33,8 +33,8 @@ class Post extends React.Component {
       "photo_url": "https://res-5.cloudinary.com/wework/image/upload/c_fill,h_460,w_460/v1562054159/production/event/photo/bd990c43-28d2-4a15-9167-16061c480d09.jpg",
       "contact": "02-1234-1;1234",
       "address": "서울 종로구 종로 51",
-      "latitude": "37.556247",
-      "longitude": "126.922061"
+      "latitude": "37.506087",
+      "longitude": "127.052933"
   }
   }
 
@@ -147,8 +147,8 @@ const ImageBox = styled.div`
   height: 380px;
   display: inline-block;
   float: left;
-  background-image: url(${props => props.url});
-  background-position: center;
+  background: url(${props => props.url}) no-repeat center;
+  background-size: cover;
 `
 
 const TitleBox = styled.div`

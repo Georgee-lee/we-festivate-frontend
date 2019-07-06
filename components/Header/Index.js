@@ -1,25 +1,60 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 
-const Header = () => {
-  return (
-    <Wrapper>
-      <GlobalMenu>
-        <Link href='/postList'>
-          <p style={{ display: 'inline-block', paddingRight: 15, borderRight: '2px solid red', cursor: 'pointer' }}>All Events</p>
-        </Link>
+export default class Header extends React.Component {
 
-        <Link href='/auth'>
-          <p style={{ display: 'inline-block', paddingLeft: 15, cursor: 'pointer'}}>Login & Signup</p>
-        </Link>
-      </GlobalMenu>
-      <MenuBox>
-        <Link href='/'>
-          <LogoBox />
-        </Link>
-      </MenuBox>
-    </Wrapper>
-  );
+  state = {
+    isLogin: false
+  }
+
+  componentDidMount() {
+    const token = sessionStorage.getItem('token');
+
+    if(token) {
+      this.setState({
+        isLogin: true
+      })
+    } 
+  }
+
+  handleLogout = () => {
+    sessionStorage.removeItem('token');
+    alert('로그아웃 되었습니다');
+    
+    this.setState({
+      isLogin: false
+    })
+  }
+
+  render() {
+
+    const { isLogin } = this.state;
+
+    return (
+      <Wrapper>
+        <GlobalMenu>
+          <Link href='/postList'>
+            <p style={{ display: 'inline-block', paddingRight: 15, borderRight: '2px solid red', cursor: 'pointer' }}>All Events</p>
+          </Link>
+  
+          {
+            isLogin ? 
+            <>
+            <p style={{ display: 'inline-block', paddingLeft: 15, cursor: 'pointer'}} onClick={this.handleLogout}>Logout</p>
+            <Link href='/mypage'><p style={{ display: 'inline-block', paddingLeft: 15, cursor: 'pointer'}}>MyPage</p></Link>
+            </>
+            :
+            <Link href='/auth'><p style={{ display: 'inline-block', paddingLeft: 15, cursor: 'pointer'}}>Login & Signup</p></Link>
+          }
+        </GlobalMenu>
+        <MenuBox>
+          <Link href='/'>
+            <LogoBox />
+          </Link>
+        </MenuBox>
+      </Wrapper>
+    );
+  }
 };
 
 const Wrapper = styled.div`
@@ -64,5 +99,3 @@ const LogoBox = styled.div`
   background-size: cover;
   background-position: center;
 `
-
-export default Header;
