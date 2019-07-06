@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import PostItem from '../PostItem'; // 각각의 포스트 Div
+import { changeDateForm } from '../../helper/changeDateForm';
 
 const PostList = (props) => {
 
@@ -9,14 +10,19 @@ const PostList = (props) => {
     <Wrapper>
       <GridWrap>
         {
-          list.map((post, idx) => {
+          list.map(post => {
+            // 날짜 스트링 포맷 변경
+            post.date = changeDateForm(post.date);
+
             return (
               <PostItem
-                key={idx}
-                id={idx}
+                length={list.length}
+                key={post.id}
+                id={post.id}
                 title={post.title}
-                building_name={post.building_name}
-                image={post.image}
+                building_name={post.building}
+                date={post.date}
+                image={post.photo_url}
               />
             )
           })

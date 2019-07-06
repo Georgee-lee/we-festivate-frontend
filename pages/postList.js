@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import Layout from '../components/Layout';
-import listArr from '../static/DummyList';
+import { listOne, listTwo } from '../static/DummyList';
 import PostList from '../components/PostList';
 import { PostInput, DateInput } from '../components/Input'
 import { PostSearchButton } from '../components/Button';
@@ -37,11 +37,14 @@ class BoardList extends React.Component {
 
   handleShowMore = () => {
     // fetch 날려서 데이터 20개 원래 배열에 더 저장하기
+    this.setState({
+
+    })
   }
 
 
   render() {
-    const { title, start_date, end_date, building } = this.state;
+    const { posts, title, start_date, end_date, building } = this.state;
 
     return(
       <Layout>
@@ -74,7 +77,7 @@ class BoardList extends React.Component {
 
         {/* 포스트 뿌리기 시작 */}
         <div style={{ width: '75%', margin: '85px auto 0' }}>
-          <PostList list={listArr} />
+          <PostList list={listOne} />
         </div>
         <MoreBtnWrap>
           <MoreBtnDiv>

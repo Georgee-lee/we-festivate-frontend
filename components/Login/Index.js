@@ -48,6 +48,12 @@ const Leftbox = styled.div`
   margin: 0 auto;
 
   border-right: 1px dotted black;
+
+  @media only screen and (max-width: 920px) {
+    float: none;
+    border: none;
+    border-bottom: 1px dotted black;
+  }
 `
 
 const LoginText = styled.div`
