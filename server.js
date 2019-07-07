@@ -18,8 +18,8 @@ app.prepare()
       app.render(req, res, '/auth');
     });
 
-    server.get('/postList', (req, res) => {
-      app.render(req, res, '/postList');
+    server.get('/postlist', (req, res) => {
+      app.render(req, res, '/postlist');
     });
 
     server.get('/post/:id', (req, res) => {

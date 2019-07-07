@@ -11,6 +11,8 @@ const PostItem = (props) => {
           <h4 style={{ margin: 0, padding: 10, fontSize: 15 }}><b>{props.title}</b></h4> 
           <p style={{ margin: 0, padding: 10 }}>{props.building_name}</p>
           <p style={{ margin: 0, padding: 10 }}>{props.date}</p>
+          <p style={{ margin: 0, padding: 10 }}>{props.current_rsvp}</p>
+          <p style={{ margin: 0, padding: 10 }}>{props.max_rsvp}</p>
         </PostDetailBox>
       </Post>
     </Link>

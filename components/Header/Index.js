@@ -8,7 +8,7 @@ export default class Header extends React.Component {
   }
 
   componentDidMount() {
-    const token = sessionStorage.getItem('token');
+    const token = sessionStorage.getItem('access_token');
 
     if(token) {
       this.setState({
@@ -18,7 +18,7 @@ export default class Header extends React.Component {
   }
 
   handleLogout = () => {
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('access_token');
     alert('로그아웃 되었습니다');
     
     this.setState({
@@ -33,7 +33,7 @@ export default class Header extends React.Component {
     return (
       <Wrapper>
         <GlobalMenu>
-          <Link href='/postList'>
+          <Link href='/postlist'>
             <p style={{ display: 'inline-block', paddingRight: 15, borderRight: '2px solid red', cursor: 'pointer' }}>All Events</p>
           </Link>
   
