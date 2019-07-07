@@ -42,7 +42,7 @@ export const SearchButton = (props) => {
         onClick={props.onClick}
     >
       Search
-      <FontAwesomeIcon icon={faSearch} style={{ paddingLeft: 10 }}/>
+      <FontAwesomeIcon icon={faSearch} size='2x' style={{ paddingLeft: 10, verticalAlign: 'middle' }}/>
     </SearchBtn>
   )
 }

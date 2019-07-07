@@ -24,6 +24,7 @@ class Auth extends Component {
   }
 
   handleSignup = () => {
+
     const newUser = {
       user_id: this.state.id,
       password: this.state.pw,
@@ -46,6 +47,29 @@ class Auth extends Component {
     });
   }
 
+  handleLogin = () => {
+
+    const { loginId, loginPw } = this.state;
+
+    const user = {
+      loginId,
+      loginPw
+    }
+
+    fetch('http://10.58.6.124:8000/user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(res => {
+      alert(res.message);
+      Router.push('/index');
+    });
+  }
+
   render () {
     const { id, email, name, profile, loginId } = this.state;
 
@@ -55,6 +79,7 @@ class Auth extends Component {
           <Login 
             loginId={loginId}
             onChange={this.handleInput}
+            onClick={this.handleLogin}
           />
           <Signup 
             id={id}
