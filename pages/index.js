@@ -6,7 +6,6 @@ import { SearchInput } from '../components/Input'
 import { SearchButton } from '../components/Button'
 import PostList from '../components/PostList';
 import PostLabelBar from '../components/PostLabelBar';
-import {listOne, listTwo} from '../static/DummyList';
 
 
 class Index extends React.Component {
@@ -16,31 +15,31 @@ class Index extends React.Component {
     latestPostList: []
   }
 
-  // async componentDidMount() {
-  //   try {
-  //     const res = await fetch('http://10.58.2.168:8000/event/priority'); // 추천 리스트 9개
-  //     const res2 = await fetch('http://10.58.2.168:8000/event/newest');  // 최신 리스트 9개
+  async componentDidMount() {
+    try {
+      const res = await fetch('http://10.58.4.202:8000/event/priority'); // 추천 리스트 9개
+      const res2 = await fetch('http://10.58.4.202:8000/event/newest');  // 최신 리스트 9개
 
-  //     if(res.status >= 400 || res2.status >= 400) {
-  //       throw new Error('Failed to fetch data');
-  //     }
+      if(res.status >= 400 || res2.status >= 400) {
+        throw new Error('Failed to fetch data');
+      }
 
-  //     const list = await res.json();
-  //     const list2 = await res2.json();
+      const list = await res.json();
+      const list2 = await res2.json();
 
-  //     this.setState({
-  //       recommandPostList: list,
-  //       latestPostList: list2
-  //     });
+      this.setState({
+        recommandPostList: list,
+        latestPostList: list2
+      });
 
-  //   } catch(e) {
-  //     console.log(e);
-  //   }
-  // }
+    } catch(e) {
+      console.log(e);
+    }
+  }
 
   render() {
 
-    // const { recommandPostList, latestPostList } = this.state;
+    const { recommandPostList, latestPostList } = this.state;
 
     return (
       <Layout style={{ margin: 0, padding: 0 }}>
@@ -69,19 +68,35 @@ class Index extends React.Component {
           title="추천 이벤트"
           subtitle="바로 참여 가능한 이벤트를 한눈에 보실 수 있습니다"
         />
-        <div style={{ width: '75%', margin: '0 auto' }}>
-          <PostList list = {listOne} />
-        </div>
-
+        
+        {
+          recommandPostList.length > 0 ? 
+          <div style={{ width: '75%', margin: '0 auto' }}>
+            <PostList list = {recommandPostList} />
+          </div>
+          :
+          <div style={{ width: '75%', height: '30%', margin: '30px auto' }}>
+            <p>현재 등록된 이벤트가 없습니다.</p>
+          </div>
+        }
+        
         <PostLabelBar
           title="전체 이벤트" 
           subtitle="등록된 이벤트 전체를 한눈에 보실 수 있습니다"
           color="white"
           bgc="#e95349"
         />
-        <div style={{ width: '75%', margin: '0 auto' }}>
-          <PostList list = {listTwo} />
-        </div>
+        
+        {
+          latestPostList.length > 0 ? 
+          <div style={{ width: '75%', margin: '0 auto' }}>
+            <PostList list = {latestPostList} />
+          </div>
+          :
+          <div style={{ width: '75%', height: '30%', margin: '30px auto' }}>
+            현재 등록된 이벤트가 없습니다.
+          </div>
+        }
 
       </Layout>
     );

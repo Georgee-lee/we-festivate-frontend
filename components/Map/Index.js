@@ -1,35 +1,48 @@
 import React, { Component } from 'react';
+import GoogleMapReact from 'google-map-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+ 
+const AnyReactComponent = () => <FontAwesomeIcon icon={faMapMarkerAlt} size='2x' />;
+const API_KEY = 'AIzaSyDH_AQwF7nmIwyfatkkzk66Yud785sqiDs';
 
-class Map extends Component {
+class SimpleMap extends Component {
 
-  componentDidMount() {
+  state = {
+    position: {
+      lat: '',
+      lng: ''
+    },
+    zoom: 19
+  }
 
-    const { lat, lng } = this.props;
+  componentDidMount = () => {
 
-    const position = {
-      lat: Number(lat),
-      lng: Number(lng)
-    };
-
-    const map = new google.maps.Map(this.map, {
-      zoom: 19,
-      center: position
-    });
-    
-    const marker = new google.maps.Marker({
-      position: position,
-      map: map
-    });
+    this.setState({
+      position: {
+        lat: Number(this.props.lat),
+        lng: Number(this.props.lng)
+      }
+    })
   }
 
   render() {
-
+    const { position, zoom } = this.state
     return (
-      <div style={{width:'50%', height:'400px', margin: '30px 0'}} ref={element => this.map=element}>
-
+      <div style={{ height: 400, width: '50%', margin: '20px 0' }}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: API_KEY }}
+          defaultCenter={position}
+          defaultZoom={zoom}
+        >
+          <AnyReactComponent
+            lat={position.lat}
+            lng={position.lng}
+          />
+        </GoogleMapReact>
       </div>
     );
   }
 }
  
-export default Map;
+export default SimpleMap;

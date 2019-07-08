@@ -12,17 +12,19 @@ const PostList = (props) => {
         {
           list.map(post => {
             // 날짜 스트링 포맷 변경
-            post.date = changeDateForm(post.date);
+            const strDate = post.date
+            const date = changeDateForm(strDate);
 
             return (
               <PostItem
-                length={list.length}
                 key={post.id}
                 id={post.id}
                 title={post.title}
                 building_name={post.building}
-                date={post.date}
+                date={date}
                 image={post.photo_url}
+                max_rsvp={post.max_rsvp}
+                current_resvp={post.current_resvp}
               />
             )
           })

@@ -1,4 +1,12 @@
 module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: 'css-loader',
+      },
+    ],
+  },
   useFileSystemPublicRoutes: false,
   exportPathMap: () => ({
     "/": { page: "/index" },
