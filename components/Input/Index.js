@@ -34,18 +34,6 @@ export const PostInput = (props) => {
   )
 }
 
-export const DateInput = (props) => {
-  return (
-    <DatePicker
-      type="date"
-      name={props.name}
-      value={props.date}
-      onChange={(e) => props.onChange(e)}
-    />
-  )
-}
-
-
 const InputBox = styled.input`
   width: 88%;
   height: 50px;
@@ -71,25 +59,12 @@ const SearchInputBox = styled.input`
 `
 
 const PostInputBox = styled.input`
-  width: 260px;
-  height: 50px;
+  width: 100%;
+  height: 30%;
   border: none;
   outline: none;
+  margin-top: 8px;
 
-  border-bottom: 1px solid gray;
   font-size: 17px;
   font-weight: 300;
-`
-
-const DatePicker = styled.input`
-  width: 210px;
-  height: 50px;
-  border: none;
-  outline: none;
-
-  border-bottom: 1px solid gray;
-  font-size: 17px;
-  font-weight: 300;
-
-  margin-left: 5px;
 `

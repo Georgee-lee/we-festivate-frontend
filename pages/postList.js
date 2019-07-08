@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import Link from 'next/link';
 import Layout from '../components/Layout';
 import PostList from '../components/PostList';
-import { PostInput, DateInput } from '../components/Input'
+import { PostInput } from '../components/Input'
 import { PostSearchButton } from '../components/Button';
 import { SelectButton } from '../components/SelectBar';
+import DatePicker from 'react-datepicker-styled-components';
 
 const _URL = 'http://10.58.4.202:8000/event/all'
 
@@ -13,8 +13,8 @@ class BoardList extends React.Component {
   state = {
     posts: [],
     title: '',
-    startDate: '',
-    endDate: '',
+    startDate: new Date(),
+    endDate: new Date(),
     building: ''
   }
 
@@ -31,6 +31,17 @@ class BoardList extends React.Component {
     this.setState({
       [e.target.name] : e.target.value
     })
+  }
+
+  handleStartDateChange = (date) => {
+    this.setState({
+      startDate: date
+    });
+  }
+  handleEndDateChange = (date) => {
+    this.setState({
+      startDate: date
+    });
   }
 
   handleSelect = (e) => {
@@ -66,35 +77,47 @@ class BoardList extends React.Component {
       <Layout>
         <SearchWrap>
           <InnerWrap>
-            <PostInput
-              value={title}
-              name="title"
-              onChange={this.handleChange}
-            />
-            <SelectButton 
-              value={building}
-              onChange={this.handleSelect}
-            />
-            <span style={{ marginLeft: 20 }}>startDate: </span>
-            <DateInput
-              value={startDate}
-              name="startDate"
-              onChange={this.handleChange}
-            />
-            <span style={{ marginLeft: 20 }}>endDate: </span>
-            <DateInput
-              value={endDate}
-              name="endDate"
-              onChange={this.handleChange}
-            />
-            <PostSearchButton onClick={this.handleSubmit}/>
+            <LabelWrap>
+              <label for="title">Title : </label>
+              <label for="title">Building : </label>
+              <label for="title">이벤트 시작일 : </label>
+            </LabelWrap>
+            <InputWrap>
+              <PostInput 
+                name="title"
+                value={title}
+                onChange={this.handleChange}
+              />
+              <SelectButton 
+                building={building}
+                onChange={this.handleSelect}
+              />
+              <DatePicker 
+                style={{ display: 'inline-block' }}
+                onChange={this.handleStartDateChange}
+                selected={startDate}
+              />
+              &nbsp; ~ &nbsp;
+              <DatePicker 
+                style={{ display: 'inline-block' }}
+                onChange={this.handleEndDateChange}
+                selected={endDate}  
+              />
+            </InputWrap>
           </InnerWrap>
         </SearchWrap>
 
         {/* 포스트 뿌리기 시작 */}
-        <div style={{ width: '75%', margin: '85px auto 0' }}>
-          <PostList list={posts} />
-        </div>
+        {
+          posts.length > 0 ? 
+          <div style={{ width: '75%', margin: '85px auto 0' }}>
+            <PostList list={posts} />
+          </div>
+          :
+          <div style={{ width: '75%', height: '30%', margin: '30px auto' }}>
+            <p>현재 등록된 이벤트가 없습니다.</p>
+          </div>
+        }
         <MoreBtnWrap>
           <MoreBtnDiv>
             <InnerBtnDiv onClick={this.handleShowMore}>
@@ -109,20 +132,47 @@ class BoardList extends React.Component {
 }
 
 const SearchWrap = styled.div`
-  width: 100%
+  width: 100%;
   min-width: 500px;
   max-width: 1920px;
-  height: 80px;
+  height: 150px;
   position: relative;
   top: 83px;
   background-color: #e0e0e0;
 `
 
 const InnerWrap = styled.div`
-  width: 80%
+  width: 100%;
   height: 100%;
-  margin-left: 12%;
-  padding: 10px;
+  padding: 10px 0 0 50px;
+`
+
+const LabelWrap = styled.div`
+  width: 10%;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  vertical-align: super;
+
+  label {
+    display: block;
+    margin-top: 20px;
+  }
+`
+
+const InputWrap = styled.div`
+  width: 69%;
+  height: 90%;
+  display: inline-block;
+  vertical-align: top;
+
+  .gmiVjD {
+    display: inline-block;
+  }
+  .react-datepicker__input-container input {
+    width: 200px;
+    height: 30px;
+  }
 `
 
 const MoreBtnWrap = styled.div`

@@ -35,7 +35,7 @@ class Auth extends Component {
       profile: this.state.profile
     }
 
-    const res = await fetch(`${_URL}/account`, {
+    const res = await fetch(`${_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -78,7 +78,6 @@ class Auth extends Component {
     .then(res => res.json())
     .then(res => {
       sessionStorage.setItem('access_token', res.access_token);
-      // Router.push('/');
       alert('환영합니다, ' +res.user_name + "님");
       Router.back();
     });

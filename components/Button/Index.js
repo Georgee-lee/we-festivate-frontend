@@ -108,13 +108,10 @@ const PostSearchBtn = styled.button`
   height: 51px;
   border: none;
 
-  margin-left: 20px;
+  margin: 0 auto;
 
   background-color: #59c45b;
   color: white;
   font-size: 17px;
   outline: none;
-
-  position: absolute;
-  top: 12px;
 `
