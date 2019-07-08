@@ -15,12 +15,11 @@ class BoardList extends React.Component {
     title: '',
     startDate: '',
     endDate: '',
-    focusedInput: null,
     building: ''
   }
 
   componentDidMount = async() => {
-    const res = await fetch(`${_URL}/0/5`);
+    const res = await fetch(`${_URL}/0/8`);
     const json = await res.json();
 
     this.setState({
@@ -47,10 +46,10 @@ class BoardList extends React.Component {
   }
 
   handleShowMore = async() => {
-    // fetch 날려서 데이터 20개 원래 배열에 더 저장하기
+    // fetch 날려서 데이터 8개 원래 배열에 더 저장하기
     const { posts } = this.state;
     const start_idx = posts.length;
-    const last_idx = start_idx + 5;
+    const last_idx = start_idx + 8;
 
     const res = await fetch(`${_URL}/${start_idx}/${last_idx}`);
     const data = await res.json();
