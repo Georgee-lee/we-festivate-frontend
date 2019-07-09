@@ -20,11 +20,11 @@ const PostList = (props) => {
                 key={post.id}
                 id={post.id}
                 title={post.title}
-                building_name={post.building}
+                building__name={post.building__name}
                 date={date}
                 image={post.photo_url}
                 max_rsvp={post.max_rsvp}
-                current_resvp={post.current_resvp}
+                current_rsvp={post.current_rsvp}
               />
             )
           })
@@ -42,9 +42,10 @@ const Wrapper = styled.div`
 const GridWrap = styled.div`
   display: grid;
   width: 100%;
+  margin-bottom: 10px;
   grid-gap: 2px;
   grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 350px 350px 350px;
+  grid-template-rows: 350px 350px;
 
   @media only screen and (max-width: 1125px) {
     grid-template-columns: 33% 33% 33%;

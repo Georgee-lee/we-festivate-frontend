@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
 import Layout from '../components/Layout';
-import { log } from 'util';
 
 const _URL = 'http://10.58.4.202:8000/user';
 
@@ -36,7 +35,7 @@ class Auth extends Component {
       profile: this.state.profile
     }
 
-    const res = await fetch(`${_URL}/account`, {
+    const res = await fetch(`${_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -53,7 +52,7 @@ class Auth extends Component {
     // 정상적인 경우
     else {
       const result = await res.json();
-      let message = result.message + '\n 서비스를 사용하시려면 다시 로그인 해 주세요.'
+      let message = result.message + '\n서비스를 사용하시려면 다시 로그인 해 주세요.'
 
       alert(message);
       window.location.href = '/auth'
@@ -79,7 +78,8 @@ class Auth extends Component {
     .then(res => res.json())
     .then(res => {
       sessionStorage.setItem('access_token', res.access_token);
-      Router.push('/');
+      alert('환영합니다, ' +res.user_name + "님");
+      Router.back();
     });
   }
 

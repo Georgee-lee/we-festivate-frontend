@@ -14,15 +14,15 @@ export const SelectButton = (props) => (
 );
 
 const SelectBox = styled.select`
+  display: block;
   width: 180px;
-  height: 50px;
+  height: 30px;
+  margin: 10px 0;
+  
   border: none;
   outline: none;
 
   border-bottom: 1px solid gray;
   font-size: 17px;
   font-weight: 300;
-
-  margin-left: 20px;
-
 `
