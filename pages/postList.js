@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Layout from "../components/Layout";
 import PostList from "../components/PostList";
 import { PostInput } from "../components/Input";
-import { PostSearchButton } from "../components/Button";
+import { EventSearchButton } from "../components/Button";
 import { SelectButton } from "../components/SelectBar";
 import DatePicker from "react-datepicker-styled-components";
 
@@ -51,6 +51,7 @@ class BoardList extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    console.log(e);
     const { title, start_date, end_date, building } = this.state;
   };
 
@@ -88,17 +89,18 @@ class BoardList extends React.Component {
               />
               <SelectButton building={building} onChange={this.handleSelect} />
               <DatePicker
-                style={{ display: "inline-block" }}
+                dateFormat="yyyy/MM/dd"
                 onChange={this.handleStartDateChange}
                 selected={startDate}
               />
               &nbsp; ~ &nbsp;
               <DatePicker
-                style={{ display: "inline-block" }}
+                dateFormat="yyyy/MM/dd"
                 onChange={this.handleEndDateChange}
                 selected={endDate}
               />
             </InputWrap>
+            <EventSearchButton onClick={this.handleSubmit} />
           </InnerWrap>
         </SearchWrap>
 
@@ -127,7 +129,7 @@ const SearchWrap = styled.div`
   width: 100%;
   min-width: 500px;
   max-width: 1920px;
-  height: 150px;
+  height: 200px;
   position: relative;
   top: 83px;
   background-color: #e0e0e0;
@@ -154,7 +156,6 @@ const LabelWrap = styled.div`
 
 const InputWrap = styled.div`
   width: 69%;
-  height: 90%;
   display: inline-block;
   vertical-align: top;
 
@@ -164,6 +165,9 @@ const InputWrap = styled.div`
   .react-datepicker__input-container input {
     width: 200px;
     height: 30px;
+    font-size: 15px;
+    font-weight: 200;
+    color: gray;
   }
 `;
 

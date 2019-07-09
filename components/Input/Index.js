@@ -58,7 +58,7 @@ const SearchInputBox = styled.input`
 
 const PostInputBox = styled.input`
   width: 70%;
-  height: 30%;
+  height: 38px;
   border: none;
   outline: none;
   margin-top: 8px;

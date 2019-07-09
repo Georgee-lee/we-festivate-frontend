@@ -81,8 +81,6 @@ class Index extends React.Component {
         <PostLabelBar
           title="전체 이벤트"
           subtitle="등록된 이벤트 전체를 한눈에 보실 수 있습니다"
-          color="white"
-          bgc="#e95349"
         />
 
         {latestPostList.length > 0 ? (
@@ -101,7 +99,7 @@ class Index extends React.Component {
 
 const Box = styled.div`
   margin-top: 82px;
-  max-height: 650px;
+  max-height: 550px;
   overflow: hidden;
   position: relative;
 
@@ -114,7 +112,6 @@ const Box = styled.div`
 
     video {
       width: auto;
-      height: 100%;
     }
   }
 
@@ -144,9 +141,8 @@ const SearchWrap = styled.div`
 `;
 
 const SearchInnerWrap = styled.div`
-  width: 70%;
-  max-width: 1200px;
-  min-width: 500px;
+  width: 100%;
+  max-width: 1100px;
 
   @media only screen and (min-width: 350px) and (max-width: 415px) {
     width: 100%;
@@ -191,7 +187,7 @@ const SearchRight = styled.div`
 
   @media only screen and (max-width: 950px) {
     width: 25%;
-    margin-left: 25px;
+    margin: 10px 0 10px 25px;
   }
 
   @media only screen and (min-width: 350px) and (max-width: 415px) {

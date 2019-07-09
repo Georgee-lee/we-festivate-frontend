@@ -7,6 +7,17 @@ import { PostWriteButton } from "../Button";
 const format = "h:mm a";
 
 class PostWrite extends React.Component {
+  static async getInitialProps(ctx) {
+    if (ctx && ctx.req) {
+      console.log("server side");
+      ctx.res.writeHead(302, { Location: `/` });
+      ctx.res.end();
+    } else {
+      console.log("client side");
+      Router.push(`/`);
+    }
+  }
+
   state = {
     startDate: new Date(),
     endDate: new Date(),

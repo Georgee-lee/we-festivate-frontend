@@ -48,6 +48,15 @@ export const PostSearchButton = props => {
   );
 };
 
+export const EventSearchButton = props => {
+  return (
+    <EventSearchBtn type="button" onClick={props.onClick}>
+      Search
+      <FontAwesomeIcon icon={faSearch} style={{ paddingLeft: 10 }} />
+    </EventSearchBtn>
+  );
+};
+
 export const PostWriteButton = props => {
   return (
     <PostWriteBtn type="button" onClick={props.onClick}>
@@ -107,6 +116,22 @@ const PostSearchBtn = styled.button`
   border: none;
 
   margin: 0 auto;
+
+  background-color: #59c45b;
+  color: white;
+  font-size: 17px;
+  outline: none;
+`;
+
+const EventSearchBtn = styled.button`
+  width: 120px;
+  height: 51px;
+  display: block;
+  border: none;
+
+  position: relative;
+  bottom: -3%;
+  left: 40%;
 
   background-color: #59c45b;
   color: white;

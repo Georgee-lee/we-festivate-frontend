@@ -7,7 +7,7 @@ const _URL = "http://10.58.4.202:8000/user/info";
 export default class Header extends React.Component {
   state = {
     isLogin: false,
-    user_type: 3
+    user_type: ""
   };
 
   componentDidMount = async () => {
