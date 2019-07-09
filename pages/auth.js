@@ -1,31 +1,41 @@
-import React, { Component } from 'react';
-import Router from 'next/router';
-import styled from 'styled-components';
-import Login from '../components/Login';
-import Signup from '../components/Signup';
-import Layout from '../components/Layout';
+import React, { Component } from "react";
+import Router from "next/router";
+import styled from "styled-components";
+import Login from "../components/Login";
+import Signup from "../components/Signup";
+import Layout from "../components/Layout";
 
-const _URL = 'http://10.58.4.202:8000/user';
+const _URL = "http://10.58.4.202:8000/user";
 
 class Auth extends Component {
-
   state = {
-    user_id: '',
-    password: '',
-    id: '',
-    pw: '',
-    name: '',
-    email: '',
-    profile: ''
-  }
+    user_id: "",
+    password: "",
+    id: "",
+    pw: "",
+    name: "",
+    email: "",
+    profile: ""
+  };
 
-  handleInput = (e) => {
+  handleInput = e => {
     this.setState({
-      [e.target.name] : e.target.value.trim()
-    })
-  }
+      [e.target.name]: e.target.value.trim()
+    });
+  };
 
   handleSignup = async () => {
+    const { id, pw, email, name } = this.state;
+
+    if (!id) {
+      alert("아이디를 입력해 주세요");
+    } else if (!pw) {
+      alert("비밀번호를 입력해 주세요");
+    } else if (!email) {
+      alert("이메일을 입력해 주세요");
+    } else if (!name) {
+      alert("닉네임을 입력해 주세요");
+    }
 
     const newUser = {
       user_id: this.state.id,
@@ -33,18 +43,18 @@ class Auth extends Component {
       email: this.state.email,
       name: this.state.name,
       profile: this.state.profile
-    }
+    };
 
     const res = await fetch(`${_URL}`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(newUser)
     });
 
     // 중복된 이메일 or 아이디일 경우
-    if(res.status >= 400) {
+    if (res.status >= 400) {
       const result = await res.json();
       alert(result.message);
       return;
@@ -52,49 +62,49 @@ class Auth extends Component {
     // 정상적인 경우
     else {
       const result = await res.json();
-      let message = result.message + '\n서비스를 사용하시려면 다시 로그인 해 주세요.'
+      let message =
+        result.message + "\n서비스를 사용하시려면 다시 로그인 해 주세요.";
 
       alert(message);
-      window.location.href = '/auth'
+      window.location.href = "/auth";
     }
-  }
+  };
 
   handleLogin = () => {
-
     const { user_id, password } = this.state;
 
     const user = {
       user_id,
       password
-    }
+    };
 
     fetch(`${_URL}/login`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(user)
     })
-    .then(res => res.json())
-    .then(res => {
-      sessionStorage.setItem('access_token', res.access_token);
-      alert('환영합니다, ' +res.user_name + "님");
-      Router.back();
-    });
-  }
+      .then(res => res.json())
+      .then(res => {
+        sessionStorage.setItem("access_token", res.access_token);
+        alert("환영합니다, " + res.user_name + "님");
+        Router.back();
+      });
+  };
 
-  render () {
+  render() {
     const { id, email, name, profile, user_id } = this.state;
 
     return (
       <Layout>
         <Wrapper>
-          <Login 
+          <Login
             user_id={user_id}
             onChange={this.handleInput}
             onClick={this.handleLogin}
           />
-          <Signup 
+          <Signup
             id={id}
             email={email}
             name={name}
@@ -104,7 +114,7 @@ class Auth extends Component {
           />
         </Wrapper>
       </Layout>
-    )
+    );
   }
 }
 
@@ -116,7 +126,7 @@ const Wrapper = styled.div`
   padding-top: 90px;
   &::after {
     display: block;
-    content: '';
+    content: "";
     clear: both;
   }
 
@@ -124,6 +134,6 @@ const Wrapper = styled.div`
     min-width: 590px;
     width: 100%;
   }
-`
+`;
 
 export default Auth;

@@ -31,6 +31,7 @@ const InputBox = styled.input`
 const SubmitBtn = styled.button`
   width: 5%;
   height: 51px;
+  font-size: 15px;
 
   background-color: green;
   color: white;
