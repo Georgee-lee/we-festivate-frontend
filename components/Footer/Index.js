@@ -36,7 +36,7 @@ const Wrapper = styled.footer`
 
   background-color: black;
 
-  @media only screen and (max-width: 375px) {
+  @media only screen and (min-width: 350px) and (max-width: 415px) {
     height: auto;
   }
 `;

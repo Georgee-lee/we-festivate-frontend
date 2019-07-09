@@ -6,7 +6,7 @@ const _URL = "http://10.58.4.202:8000/user/info";
 
 export default class Header extends React.Component {
   state = {
-    isLogin: true,
+    isLogin: false,
     user_type: 3
   };
 
@@ -36,9 +36,7 @@ export default class Header extends React.Component {
     sessionStorage.removeItem("access_token");
     alert("로그아웃 되었습니다");
 
-    this.setState({
-      isLogin: false
-    });
+    window.location.href = "/";
   };
 
   render() {

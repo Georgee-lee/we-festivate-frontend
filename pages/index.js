@@ -14,8 +14,8 @@ class Index extends React.Component {
 
   async componentDidMount() {
     try {
-      const res = await fetch("http://10.58.4.202:8000/event/priority"); // 추천 리스트 9개
-      const res2 = await fetch("http://10.58.4.202:8000/event/newest"); // 최신 리스트 9개
+      const res = await fetch("http://10.58.7.25:8000/event/priority"); // 추천 리스트 9개
+      const res2 = await fetch("http://10.58.7.25:8000/event/newest"); // 최신 리스트 9개
 
       if (res.status >= 400 || res2.status >= 400) {
         throw new Error("Failed to fetch data");
@@ -118,7 +118,7 @@ const Box = styled.div`
     }
   }
 
-  @media only screen and (max-width: 375px) {
+  @media only screen and (min-width: 350px) and (max-width: 415px) {
     height: 450px;
 
     video {
@@ -137,7 +137,7 @@ const SearchWrap = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media only screen and (max-width: 375px) {
+  @media only screen and (min-width: 350px) and (max-width: 415px) {
     width: 100%;
     left: 0;
   }
@@ -148,7 +148,7 @@ const SearchInnerWrap = styled.div`
   max-width: 1200px;
   min-width: 500px;
 
-  @media only screen and (max-width: 375px) {
+  @media only screen and (min-width: 350px) and (max-width: 415px) {
     width: 100%;
     min-width: unset;
   }
@@ -183,11 +183,6 @@ const SearchLeft = styled.div`
     width: 100%;
     display: block;
   }
-
-  @media only screen and (max-width: 375px) {
-    width: 100%;
-    display: block;
-  }
 `;
 
 const SearchRight = styled.div`
@@ -199,7 +194,7 @@ const SearchRight = styled.div`
     margin-left: 25px;
   }
 
-  @media only screen and (max-width: 375px) {
+  @media only screen and (min-width: 350px) and (max-width: 415px) {
     width: 30%;
   }
 `;

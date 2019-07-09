@@ -13,6 +13,7 @@ export default class RootDocument extends Document {
           />
           <meta name="description" content="We Festivate" />
           <meta name="keywords" content="website,wework,weworkevent" />
+          <link rel="stylesheet" href="../static/index.css" />
         </Head>
         <body>
           <Main />

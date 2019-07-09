@@ -48,6 +48,14 @@ export const PostSearchButton = props => {
   );
 };
 
+export const PostWriteButton = props => {
+  return (
+    <PostWriteBtn type="button" onClick={props.onClick}>
+      Submit
+    </PostWriteBtn>
+  );
+};
+
 const GoogleLoginBtn = styled.button`
   background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png")
     6px 6px no-repeat;
@@ -104,4 +112,10 @@ const PostSearchBtn = styled.button`
   color: white;
   font-size: 17px;
   outline: none;
+`;
+
+const PostWriteBtn = styled.button`
+  width: 13%;
+  height: 51px;
+  margin-left: 87%;
 `;

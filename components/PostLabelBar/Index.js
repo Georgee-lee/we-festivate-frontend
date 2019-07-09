@@ -24,7 +24,7 @@ const TextBox = styled.div`
   padding: 35px;
   margin: 0 auto;
 
-  @media only screen and (max-width: 375px) {
+  @media only screen and (min-width: 350px) and (max-width: 415px) {
     padding: 0;
 
     h2 {
