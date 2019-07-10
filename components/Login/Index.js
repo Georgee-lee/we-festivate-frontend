@@ -10,15 +10,18 @@ const KAKAO_KEY = "f800696839cb279f7fa590b7a1406a95";
 
 class Login extends React.Component {
   componentDidMount() {
-    Kakao.init(KAKAO_KEY);
+    // init은 한 번만 하면 되기에 체크한 후 안되어있으면 실행!
+    if (!window.Kakao.Link) {
+      Kakao.init(KAKAO_KEY);
+    }
     // 카카오 로그인 버튼을 생성합니다.
     Kakao.Auth.createLoginButton({
       container: "#kakao-login-btn",
       success: function(authObj) {
-        alert(JSON.stringify(authObj));
+        console.log(JSON.stringify(authObj));
       },
       fail: function(err) {
-        alert(JSON.stringify(err));
+        console.log(JSON.stringify(err));
       }
     });
   }

@@ -5,7 +5,7 @@ import Login from "../components/Login";
 import Signup from "../components/Signup";
 import Layout from "../components/Layout";
 
-const _URL = "http://10.58.4.202:8000/user";
+const _URL = "http://10.58.1.131:8000/user";
 
 class Auth extends Component {
   state = {
@@ -87,9 +87,13 @@ class Auth extends Component {
     })
       .then(res => res.json())
       .then(res => {
-        sessionStorage.setItem("access_token", res.access_token);
-        alert("환영합니다, " + res.user_name + "님");
-        Router.back();
+        if (res.access_token) {
+          sessionStorage.setItem("access_token", res.access_token);
+          alert("환영합니다, " + res.user_name + "님");
+          Router.back();
+        } else {
+          alert(res.message);
+        }
       });
   };
 

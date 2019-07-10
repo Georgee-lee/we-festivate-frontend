@@ -1,26 +1,20 @@
 import styled from "styled-components";
 import DatePicker from "react-datepicker-styled-components";
 import TimePicker from "rc-time-picker";
+import moment from "moment";
 import { SelectButton } from "../SelectBar";
 import { PostWriteButton } from "../Button";
 
 const format = "h:mm a";
+const now = moment()
+  .hour(0)
+  .minute(0);
 
 class PostWrite extends React.Component {
-  static async getInitialProps(ctx) {
-    if (ctx && ctx.req) {
-      console.log("server side");
-      ctx.res.writeHead(302, { Location: `/` });
-      ctx.res.end();
-    } else {
-      console.log("client side");
-      Router.push(`/`);
-    }
-  }
-
   state = {
     startDate: new Date(),
-    endDate: new Date(),
+    start_time: now,
+    end_time: now,
     title: "",
     building: "",
     place: "",
@@ -28,20 +22,35 @@ class PostWrite extends React.Component {
     max_rsvp: ""
   };
 
-  handleTimeChange = value => {
+  handleStartTimeChange = value => {
     let time = value.format(format);
-    console.log(typeof time);
+    this.setState({
+      start_time: time
+    });
   };
 
-  handleStartDateChange = date => {
+  handleEndTimeChange = value => {
+    let time = value.format(format);
+    this.setState({
+      end_time: time
+    });
+  };
+
+  handleDateChange = date => {
     this.setState({
       startDate: date
     });
   };
 
-  handleBuildingChange = item => {
+  handleBuildingSelect = e => {
     this.setState({
-      building: item
+      building: e.target.value
+    });
+  };
+
+  handleInputChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
     });
   };
 
@@ -57,14 +66,17 @@ class PostWrite extends React.Component {
           <TitleWrap>
             <input
               type="text"
+              name="title"
               value={this.state.title}
+              onChange={e => this.handleInputChange(e)}
               placeholder="Enter Title"
             />
           </TitleWrap>
           <BodyWrap>
             <LeftBox>
               <ul>
-                <li>날짜 / 시간</li>
+                <li>날짜</li>
+                <li>시작 / 종료</li>
                 <li>장소</li>
                 <li>지점</li>
                 <li>제한인원</li>
@@ -74,13 +86,22 @@ class PostWrite extends React.Component {
             </LeftBox>
             <RightBox>
               <DatePicker
-                onChange={this.handleStartDateChange}
+                onChange={this.handleDateChange}
                 selected={this.state.startDate}
               />
-              / &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <br />
               <TimePicker
                 showSecond={false}
-                onChange={this.handleTimeChange}
+                defaultValue={this.state.start_time}
+                onChange={this.handleStartTimeChange}
+                format={format}
+                use12Hours
+                inputReadOnly
+              />
+              <TimePicker
+                showSecond={false}
+                defaultValue={this.state.end_time}
+                onChange={this.handleEndTimeChange}
                 format={format}
                 use12Hours
                 inputReadOnly
@@ -88,23 +109,26 @@ class PostWrite extends React.Component {
               <input
                 style={{ width: 470 }}
                 type="text"
+                name="place"
                 value={this.state.place}
+                onChange={e => this.handleInputChange(e)}
                 placeholder="Enter place"
               />
               <SelectButton
-                onChange={this.handleBuildingChange}
+                onChange={this.handleBuildingSelect}
                 value={this.state.building}
               />
               <input
                 style={{ width: 150, height: 45, marginTop: 18 }}
-                type="text"
+                type="number"
+                name="max_rsvp"
                 value={this.state.max_rsvp}
+                onChange={e => this.handleInputChange(e)}
                 placeholder="max_rsvp"
               />
               <br />
-              <br />
               <input
-                style={{ width: 150, height: 30, margin: "0 0 20px 0" }}
+                style={{ width: 150, height: 30, margin: "10px auto 5px" }}
                 type="file"
                 onChange={this.onChange}
               />
@@ -113,7 +137,9 @@ class PostWrite extends React.Component {
               <textarea
                 rows="5"
                 col="50"
+                name="content"
                 style={{ width: "100%", height: "35%" }}
+                onChange={e => this.handleInputChange(e)}
               />
               <PostWriteButton onClick={this.handleClick} />
             </RightBox>
@@ -149,9 +175,7 @@ const TitleWrap = styled.div`
 
 const BodyWrap = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
+  display: -webkit-box;
 `;
 
 const LeftBox = styled.div`

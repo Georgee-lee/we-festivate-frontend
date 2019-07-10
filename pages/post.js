@@ -24,7 +24,7 @@ class Post extends React.Component {
 
   //     const data = await res.json();
 
-  //     return { data }
+  //     return { postId, data }
   //   } catch (e) {
   //     console.log(e);
   //   }
@@ -58,7 +58,7 @@ class Post extends React.Component {
 
   render() {
     const BG_IMG = "https://en.trippose.com/img/bg/bokeh-514948_1920.jpg";
-    // const { data } = this.props;
+    // const { postId, data } = this.props;
     // const date = changeDateForm(data.date);
     const { post } = this.state;
 
@@ -116,7 +116,7 @@ class Post extends React.Component {
             )}
             {/* 댓글 작성하는 곳 */}
             <h2 style={{ marginBottom: 10 }}>Comment</h2>
-            <CommentWrite />
+            <CommentWrite postId="11" />
           </PostWrap>
         </DetailBox>
       </Layout>

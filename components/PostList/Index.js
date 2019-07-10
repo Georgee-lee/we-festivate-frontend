@@ -42,7 +42,6 @@ const GridWrap = styled.div`
   margin-bottom: 10px;
   grid-gap: 2px;
   grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 350px 350px;
 
   @media only screen and (max-width: 1125px) {
     grid-template-columns: 33% 33% 33%;

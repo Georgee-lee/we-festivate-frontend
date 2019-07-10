@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "dev": "NODE_PATH=./pages node server.js",
+    "build": "NODE_PATH=./pages NODE_ENV=production next build",
+    "start": "NODE_PATH=./pages NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",

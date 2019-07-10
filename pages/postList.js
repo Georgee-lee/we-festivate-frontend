@@ -6,7 +6,7 @@ import { EventSearchButton } from "../components/Button";
 import { SelectButton } from "../components/SelectBar";
 import DatePicker from "react-datepicker-styled-components";
 
-const _URL = "http://10.58.4.202:8000/event/all";
+const _URL = "http://10.58.7.25:8000/event/all";
 
 class BoardList extends React.Component {
   state = {
