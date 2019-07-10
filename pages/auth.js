@@ -131,7 +131,7 @@ const Wrapper = styled.div`
   }
 
   @media only screen and (max-width: 920px) {
-    min-width: 590px;
+    min-width: 550px;
     width: 100%;
   }
 `;

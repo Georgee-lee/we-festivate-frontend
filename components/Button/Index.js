@@ -88,7 +88,7 @@ const NormalLoginButton = styled.button`
   font-size: 15px;
 
   color: white;
-  background-color: blue;
+  background-color: black;
 
   outline: none;
 `;
@@ -96,8 +96,9 @@ const NormalLoginButton = styled.button`
 const SubmitBtn = styled.button`
   width: 100%;
   height: 40px;
-  background-color: #32cd32;
+  background-color: black;
   color: white;
+  font-size: 15px;
   outline: none;
 `;
 const SearchBtn = styled.button`

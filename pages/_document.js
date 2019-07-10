@@ -14,6 +14,7 @@ export default class RootDocument extends Document {
           <meta name="description" content="We Festivate" />
           <meta name="keywords" content="website,wework,weworkevent" />
           <link rel="stylesheet" href="../static/index.css" />
+          <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
         </Head>
         <body>
           <Main />
