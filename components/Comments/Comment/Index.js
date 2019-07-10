@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Comment = ({ user_name, content }) => {
+const Comment = ({ postId, user_name, content }) => {
   const date = new Date().toLocaleString();
 
   return (

@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "dev": "NODE_PATH=./pages node server.js",
+    "build": "NODE_PATH=./pages NODE_ENV=production next build",
+    "start": "NODE_PATH=./pages NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@fortawesome/react-fontawesome": "^0.1.4",
+    "@zeit/next-css": "^1.0.1",
     "babel-plugin-styled-components": "^1.10.6",
     "express": "^4.17.1",
     "google-map-react": "^1.1.4",
@@ -29,9 +30,11 @@
     "moment": "^2.24.0",
     "next": "^8.1.0",
     "next-eslint": "0.0.4",
+    "rc-time-picker": "^3.7.1",
     "react": "^16.8.6",
     "react-datepicker-styled-components": "^1.0.4",
     "react-dom": "^16.8.6",
+    "react-google-login": "^5.0.4",
     "react-with-direction": "^1.3.0",
     "styled-components": "^4.3.2"
   },

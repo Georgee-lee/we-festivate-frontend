@@ -1,41 +1,50 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-const PostLabelBar = (props) => {
-
-  const { color, bgc, title, subtitle } = props;
+const PostLabelBar = props => {
+  const { title, subtitle } = props;
 
   return (
-    <Tagbar bgc={bgc && bgc}>
+    <Tagbar>
       <TextBox>
-        <Headtext color={color}>{title}</Headtext>
-        <Subtext color={color}>{subtitle}</Subtext>
+        <Headtext>{title}</Headtext>
+        <Subtext>{subtitle}</Subtext>
       </TextBox>
     </Tagbar>
-  )
+  );
 };
 
 const Tagbar = styled.div`
   width: 100%;
-  height: 100px;
-  background-color: ${props => props.bgc ? props.bgc : 'white'}
-`
+  background-color: white;
+`;
 
 const TextBox = styled.div`
   width: 78%;
   padding: 35px;
   margin: 0 auto;
-`
+
+  @media only screen and (min-width: 350px) and (max-width: 415px) {
+    padding: 0;
+
+    h2 {
+      display: block;
+    }
+  }
+`;
 
 const Headtext = styled.h2`
   display: inline-block;
-  fontSize: 40;
+  fontsize: 40;
   margin: 0 10px 0 0;
-  color: ${props => props.color ? props.color : 'black'}
-`
+
+  @media only screen and (max-width: 720px) {
+    display: block;
+  }
+`;
 
 const Subtext = styled.span`
-  color: ${props => props.color ? props.color : 'gray'}
   font-size: 18px;
-`
+  color: gray;
+`;
 
 export default PostLabelBar;

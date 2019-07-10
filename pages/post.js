@@ -24,7 +24,7 @@ class Post extends React.Component {
 
   //     const data = await res.json();
 
-  //     return { data }
+  //     return { postId, data }
   //   } catch (e) {
   //     console.log(e);
   //   }
@@ -58,7 +58,7 @@ class Post extends React.Component {
 
   render() {
     const BG_IMG = "https://en.trippose.com/img/bg/bokeh-514948_1920.jpg";
-    // const { data } = this.props;
+    // const { postId, data } = this.props;
     // const date = changeDateForm(data.date);
     const { post } = this.state;
 
@@ -95,6 +95,7 @@ class Post extends React.Component {
                 {post.max_rsvp > 0 ? post.max_rsvp + "명" : "제한없음"}
               </span>
               <JoinBtn>RSVP</JoinBtn>
+              <ShareBtn>SNS에 공유</ShareBtn>
             </InfoBox>
             {/* 본문이 위치한 곳 */}
             <div style={{ whiteSpace: "pre-wrap", width: "65%" }}>
@@ -114,8 +115,8 @@ class Post extends React.Component {
               </div>
             )}
             {/* 댓글 작성하는 곳 */}
-            <h2 style={{ marginBottom: 10 }}>한줄평 작성</h2>
-            <CommentWrite />
+            <h2 style={{ marginBottom: 10 }}>Comment</h2>
+            <CommentWrite postId="11" />
           </PostWrap>
         </DetailBox>
       </Layout>
@@ -199,6 +200,13 @@ const JoinBtn = styled.button`
   outline: none;
 
   float: right;
+`;
+
+const ShareBtn = styled(JoinBtn)`
+  background-color: yellow;
+  color: black;
+  border: 1px solid yellow;
+  margin-right: 10px;
 `;
 
 export default Post;

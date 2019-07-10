@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -10,7 +10,11 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'NanumSquare', sans-serif !important;
+    @font-face {
+      font-family: 'Apercu';
+      src: url('../static/Fonts/apercu_regular_webfont.woff');
+    }
+    font-family: 'Apercu', 'NanumSquare', sans-serif !important;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
