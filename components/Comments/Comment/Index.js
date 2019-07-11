@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
-const Comment = ({ postId, user_name, content }) => {
+const Comment = ({ user_id, comment }) => {
   const date = new Date().toLocaleString();
 
   return (
     <PostWrap>
       <Left>
-        <p style={{ margin: "0 0 10px 0" }}>{user_name}</p>
+        <p style={{ margin: "0 0 10px 0" }}>{user_id}</p>
         <span>{date}</span>
       </Left>
       <Right>
-        <p style={{ margin: 0 }}>{content}</p>
+        <p style={{ margin: 0 }}>{comment}</p>
       </Right>
     </PostWrap>
   );

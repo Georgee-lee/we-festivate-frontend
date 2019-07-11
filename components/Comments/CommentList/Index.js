@@ -6,7 +6,11 @@ const CommentList = ({ List }) => {
     <Wrapper>
       {List.map(item => {
         return (
-          <Comment key={item.id} name={item.user_name} content={item.content} />
+          <Comment
+            key={item.id}
+            user_id={item.user_id}
+            comment={item.reply_text}
+          />
         );
       })}
     </Wrapper>

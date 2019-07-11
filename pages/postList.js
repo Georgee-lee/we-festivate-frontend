@@ -9,6 +9,7 @@ import { _URL } from "../config/constants";
 
 class BoardList extends React.Component {
   state = {
+    user_id: "",
     posts: [],
     title: "",
     startDate: new Date(),
@@ -19,6 +20,14 @@ class BoardList extends React.Component {
   componentDidMount = async () => {
     const res = await fetch(`${_URL}/event/all?start=0&end=8`);
     const json = await res.json();
+
+    const user_id = sessionStorage.getItem("user_id");
+
+    if (user_id) {
+      this.setState({
+        user_id
+      });
+    }
 
     this.setState({
       posts: json
@@ -109,7 +118,7 @@ class BoardList extends React.Component {
         {posts.length > 0 ? (
           <>
             <div style={{ width: "75%", margin: "105px auto 0" }}>
-              <PostList list={posts} />
+              <PostList list={posts} user_id={this.state.user_id} />
             </div>
             <MoreBtnWrap>
               <MoreBtnDiv>

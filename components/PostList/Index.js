@@ -4,7 +4,7 @@ import PostItem from "../PostItem"; // 각각의 포스트 Div
 import { changeDateForm } from "../../helper/changeDateForm";
 
 const PostList = props => {
-  const { list } = props;
+  const { list, user_id } = props;
 
   return (
     <Wrapper>
@@ -24,6 +24,7 @@ const PostList = props => {
               image={post.photo_url}
               max_rsvp={post.max_rsvp}
               current_rsvp={post.current_rsvp}
+              user_id={user_id}
             />
           );
         })}

@@ -1,56 +1,52 @@
 import styled from "styled-components";
 import fetch from "isomorphic-unfetch";
-
-const _URL = "http://10.58.1.131:8000/user";
+import { _URL } from "../../../config/constants";
 
 class CommentWrite extends React.Component {
   state = {
     postId: this.props.postId,
-    content: "",
-    user_name: "" // Token을 던져줘서 지금 로그인 한 유저의 이름을 얻어낸다.
+    reply_text: ""
   };
 
   checkUserName = async () => {
     const access_token = sessionStorage.getItem("access_token");
 
-    const token = {
-      Authorization: access_token
-    };
-
-    // TOKEN이 있으면 로그인 한 상태니까 바로 통신하면 된다.
-    if (access_token) {
-      const res = await fetch(`${_URL}/abcd`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: access_token
-        }
-      });
-
-      if (res.status >= 400) {
-        const result = await res.json();
-        alert(result.message);
-        return;
-      }
-
-      const name = await res.json();
-      console.log(name);
-    }
-    // TOKEN이 없다면 로그인 안 한 거니까 로그인 하라고 경고창 띄우기
-    else {
+    if (!access_token) {
       alert("로그인이 필요합니다");
     }
+
+    // TOKEN이 있으면 로그인 한 상태니까 바로 통신하면 된다.
+    // if (access_token) {
+    //   const res = await fetch(`${_URL}/abcd`, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: access_token
+    //     }
+    //   });
+
+    //   if (res.status >= 400) {
+    //     const result = await res.json();
+    //     alert(result.message);
+    //     return;
+    //   }
+
+    //   const name = await res.json();
+    //   console.log(name);
+    // }
+    // TOKEN이 없다면 로그인 안 한 거니까 로그인 하라고 경고창 띄우기
   };
 
   handleSubmit = async () => {
-    const { user_name, content, postId } = this.state;
+    const user_id = sessionStorage.getItem("user_id");
+    const { postId, reply_text } = this.state;
 
     const comment = {
-      user_name,
-      content
+      user_id,
+      reply_text
     };
 
-    const res = await fetch(`${_URL}`, {
+    const res = await fetch(`${_URL}/event/detail/${postId}/reply`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -64,17 +60,30 @@ class CommentWrite extends React.Component {
       return;
     }
 
-    const response = res.json();
-    console.log(response);
+    const response = await res.json();
 
-    window.location.href = "/detail/" + postId;
+    if (response.reply_result) {
+      alert(response.reply_message);
+      window.location.href = `/post/${postId}`;
+    } else {
+      alert(response.reply_message);
+    }
+  };
+
+  handleChange = e => {
+    this.setState({
+      reply_text: e.target.value
+    });
   };
 
   render() {
     return (
       <div style={{ marginBottom: 20 }}>
-        <InputBox onClick={this.checkUserName} />
-        <SubmitBtn>등록</SubmitBtn>
+        <InputBox
+          onClick={this.checkUserName}
+          onChange={e => this.handleChange(e)}
+        />
+        <SubmitBtn onClick={this.handleSubmit}>등록</SubmitBtn>
       </div>
     );
   }
