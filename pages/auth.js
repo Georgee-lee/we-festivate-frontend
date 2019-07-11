@@ -4,8 +4,7 @@ import styled from "styled-components";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import Layout from "../components/Layout";
-
-const _URL = "http://10.58.6.213:8000/user";
+import { _URL } from "../config/constants";
 
 class Auth extends Component {
   state = {
@@ -45,7 +44,7 @@ class Auth extends Component {
       profile: this.state.profile
     };
 
-    const res = await fetch(`${_URL}`, {
+    const res = await fetch(`${_URL}/user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -78,7 +77,7 @@ class Auth extends Component {
       password
     };
 
-    fetch(`${_URL}/login`, {
+    fetch(`${_URL}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

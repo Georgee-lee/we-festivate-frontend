@@ -8,8 +8,7 @@ import Map from "../components/Map";
 import { changeDateForm } from "../helper/changeDateForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
-
-const _URL = "http://10.58.1.1:8000/event/detail/";
+import { _URL } from "../config/constants";
 
 class Post extends React.Component {
   static async getInitialProps({ query }) {
@@ -23,7 +22,7 @@ class Post extends React.Component {
     };
 
     try {
-      const res = await fetch(`${_URL}${postId}`, {
+      const res = await fetch(`${_URL}/event/detail/${postId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -67,7 +66,7 @@ class Post extends React.Component {
                   </p>
                   <br />
                   <p style={{ fontWeight: "bold", marginBottom: 20 }}>일시</p>
-                  <p style={{ margin: "0 0 5px 0" }}>{data.date}</p>
+                  <p style={{ margin: "0 0 5px 0" }}>{date}</p>
                   <p style={{ margin: 0 }}>
                     {data.start_time} ~ {data.end_time}
                   </p>

@@ -5,8 +5,7 @@ import { PostInput } from "../components/Input";
 import { EventSearchButton } from "../components/Button";
 import { SelectButton } from "../components/SelectBar";
 import DatePicker from "react-datepicker-styled-components";
-
-const _URL = "http://10.58.1.1:8000/event/all";
+import { _URL } from "../config/constants";
 
 class BoardList extends React.Component {
   state = {
@@ -18,7 +17,7 @@ class BoardList extends React.Component {
   };
 
   componentDidMount = async () => {
-    const res = await fetch(`${_URL}?start=0&end=8`);
+    const res = await fetch(`${_URL}/event/all?start=0&end=8`);
     const json = await res.json();
 
     this.setState({
@@ -61,7 +60,9 @@ class BoardList extends React.Component {
     const start_idx = posts.length;
     const last_idx = start_idx + 8;
 
-    const res = await fetch(`${_URL}/${start_idx}/${last_idx}`);
+    const res = await fetch(
+      `${_URL}/event/all?start=${start_idx}&end=${last_idx}`
+    );
     const data = await res.json();
 
     this.setState({
