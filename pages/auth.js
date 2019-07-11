@@ -5,7 +5,7 @@ import Login from "../components/Login";
 import Signup from "../components/Signup";
 import Layout from "../components/Layout";
 
-const _URL = "http://10.58.1.131:8000/user";
+const _URL = "http://10.58.6.213:8000/user";
 
 class Auth extends Component {
   state = {
@@ -89,6 +89,7 @@ class Auth extends Component {
       .then(res => {
         if (res.access_token) {
           sessionStorage.setItem("access_token", res.access_token);
+          sessionStorage.setItem("user_id", res.user_id);
           alert("환영합니다, " + res.user_name + "님");
           Router.back();
         } else {
@@ -135,7 +136,7 @@ const Wrapper = styled.div`
   }
 
   @media only screen and (max-width: 920px) {
-    min-width: 550px;
+    min-width: 400px;
     width: 100%;
   }
 `;

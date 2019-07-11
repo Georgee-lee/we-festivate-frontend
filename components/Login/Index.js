@@ -67,6 +67,7 @@ class Login extends React.Component {
         </LoginBtnbox>
 
         <GoogleLogin
+          className="google"
           clientId="664534233678-0c0sfcouhhl4ha18ahl89eddhhb92k7t.apps.googleusercontent.com"
           buttonText="Login With Google"
           onSuccess={this.responseGoogle}
@@ -97,9 +98,27 @@ const Leftbox = styled.div`
   }
 
   @media only screen and (max-width: 920px) {
+    width: 100%;
+    max-width: 500px;
     float: none;
     border: none;
     border-bottom: 1px dotted black;
+  }
+
+  @media only screen and (max-width: 849px) {
+    #kakao-login-btn {
+      width: 100%;
+      height: 85%;
+      margin-left: 0;
+    }
+    .google {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .google span {
+      width: 100%;
+      font-size: 19px;
+    }
   }
 `;
 

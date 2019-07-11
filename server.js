@@ -25,7 +25,8 @@ app
 
     server.get("/post/:id", (req, res) => {
       const realPage = "/post";
-      const params = { id: req.params.id };
+      console.log(req.parmas);
+      const params = { id: req.params.id, user_id: req.params.user_id };
       app.render(req, res, realPage, params);
     });
 

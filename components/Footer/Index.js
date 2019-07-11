@@ -32,7 +32,9 @@ const Footer = () => {
 
 const Wrapper = styled.footer`
   width: 100%;
-  height: 250px;
+  height: 100%;
+  min-height: 250px;
+  max-height: 290px;
 
   background-color: black;
 
@@ -76,7 +78,6 @@ const RightBox = styled.div`
 
 const TextBox = styled.div`
   box-sizing: border-box;
-  width: 80%;
   height: 70%;
   padding: 50px 0 0 0;
   color: #9e9e9e;
@@ -85,7 +86,7 @@ const TextBox = styled.div`
   @media only screen and (min-width: 500px) and (max-width: 1130px) {
     width: auto;
     height: auto;
-    padding: 0 0 0 10%;
+    padding: 0 10% 0 10%;
   }
 `;
 

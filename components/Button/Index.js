@@ -52,7 +52,11 @@ export const EventSearchButton = props => {
   return (
     <EventSearchBtn type="button" onClick={props.onClick}>
       Search
-      <FontAwesomeIcon icon={faSearch} style={{ paddingLeft: 10 }} />
+      <FontAwesomeIcon
+        icon={faSearch}
+        size="2x"
+        style={{ paddingLeft: 10, verticalAlign: "middle" }}
+      />
     </EventSearchBtn>
   );
 };

@@ -88,14 +88,14 @@ const InputBox = styled.input`
   outline: none;
   font-size: 17px;
   font-weight: 300;
-
-  vertical-align: middle;
 `;
 
 const SubmitBtn = styled.button`
   width: 5%;
+  min-width: 45px;
   height: 51px;
   font-size: 15px;
+  vertical-align: middle;
 
   background-color: green;
   color: white;
