@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import styled from "styled-components";
 import PostItem from "../PostItem"; // 각각의 포스트 Div
 import { changeDateForm } from "../../helper/changeDateForm";

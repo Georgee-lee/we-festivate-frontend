@@ -5,8 +5,7 @@ import { PostInput } from "../components/Input";
 import { EventSearchButton } from "../components/Button";
 import { SelectButton } from "../components/SelectBar";
 import DatePicker from "react-datepicker-styled-components";
-
-const _URL = "http://10.58.7.25:8000/event/all";
+import { _URL } from "../config/constants";
 
 class BoardList extends React.Component {
   state = {
@@ -18,7 +17,7 @@ class BoardList extends React.Component {
   };
 
   componentDidMount = async () => {
-    const res = await fetch(`${_URL}/0/8`);
+    const res = await fetch(`${_URL}/event/all?start=0&end=8`);
     const json = await res.json();
 
     this.setState({
@@ -61,7 +60,9 @@ class BoardList extends React.Component {
     const start_idx = posts.length;
     const last_idx = start_idx + 8;
 
-    const res = await fetch(`${_URL}/${start_idx}/${last_idx}`);
+    const res = await fetch(
+      `${_URL}/event/all?start=${start_idx}&end=${last_idx}`
+    );
     const data = await res.json();
 
     this.setState({
@@ -106,19 +107,30 @@ class BoardList extends React.Component {
 
         {/* 포스트 뿌리기 시작 */}
         {posts.length > 0 ? (
-          <div style={{ width: "75%", margin: "85px auto 0" }}>
-            <PostList list={posts} />
-          </div>
+          <>
+            <div style={{ width: "75%", margin: "105px auto 0" }}>
+              <PostList list={posts} />
+            </div>
+            <MoreBtnWrap>
+              <MoreBtnDiv>
+                <InnerBtnDiv onClick={this.handleShowMore}>
+                  더 불러오기
+                </InnerBtnDiv>
+              </MoreBtnDiv>
+            </MoreBtnWrap>
+          </>
         ) : (
-          <div style={{ width: "75%", height: "30%", margin: "30px auto" }}>
+          <div
+            style={{
+              width: "75%",
+              height: "30%",
+              margin: "100px auto 0",
+              textAlign: "center"
+            }}
+          >
             <p>현재 등록된 이벤트가 없습니다.</p>
           </div>
         )}
-        <MoreBtnWrap>
-          <MoreBtnDiv>
-            <InnerBtnDiv onClick={this.handleShowMore}>더 불러오기</InnerBtnDiv>
-          </MoreBtnDiv>
-        </MoreBtnWrap>
         {/* 포스트 뿌리기 끝 */}
       </Layout>
     );
@@ -133,6 +145,10 @@ const SearchWrap = styled.div`
   position: relative;
   top: 83px;
   background-color: #e0e0e0;
+
+  @media only screen and (max-width: 703px) {
+    height: 240px;
+  }
 `;
 
 const InnerWrap = styled.div`
@@ -142,7 +158,9 @@ const InnerWrap = styled.div`
 `;
 
 const LabelWrap = styled.div`
-  width: 10%;
+  width: 100%;
+  max-width: 100px;
+  min-width: 50px;
   display: inline-block;
   text-align: center;
   box-sizing: border-box;
@@ -179,6 +197,7 @@ const MoreBtnWrap = styled.div`
 
 const MoreBtnDiv = styled.div`
   width: 15%;
+  min-width: 90px;
   height: 100%;
 
   margin: 0 auto;

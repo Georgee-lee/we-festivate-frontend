@@ -5,6 +5,7 @@ import { SearchInput } from "../components/Input";
 import { SearchButton } from "../components/Button";
 import PostList from "../components/PostList";
 import PostLabelBar from "../components/PostLabelBar";
+import { _URL } from "../config/constants";
 
 class Index extends React.Component {
   state = {
@@ -14,8 +15,8 @@ class Index extends React.Component {
 
   async componentDidMount() {
     try {
-      const res = await fetch("http://10.58.7.25:8000/event/priority"); // 추천 리스트 9개
-      const res2 = await fetch("http://10.58.7.25:8000/event/newest"); // 최신 리스트 9개
+      const res = await fetch(`${_URL}/event/priority`); // 추천 리스트 8개
+      const res2 = await fetch(`${_URL}/event/newest`); // 최신 리스트 8개
 
       if (res.status >= 400 || res2.status >= 400) {
         throw new Error("Failed to fetch data");

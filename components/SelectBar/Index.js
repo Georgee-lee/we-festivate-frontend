@@ -5,10 +5,10 @@ export const SelectButton = props => {
   return (
     <SelectBox onChange={e => props.onChange(e)} value={props.building}>
       <option value="">전체빌딩</option>
-      <option value="Hongdae">홍대</option>
-      <option value="Seolleung">선릉</option>
-      <option value="Seolleung II">선릉 2호점</option>
-      <option value="Seolleung III">선릉 3호점</option>
+      <option value="1">홍대</option>
+      <option value="2">선릉</option>
+      <option value="3">선릉 2호점</option>
+      <option value="4">선릉 3호점</option>
     </SelectBox>
   );
 };

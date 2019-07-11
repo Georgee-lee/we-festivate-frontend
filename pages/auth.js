@@ -4,8 +4,7 @@ import styled from "styled-components";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
 import Layout from "../components/Layout";
-
-const _URL = "http://10.58.1.131:8000/user";
+import { _URL } from "../config/constants";
 
 class Auth extends Component {
   state = {
@@ -45,7 +44,7 @@ class Auth extends Component {
       profile: this.state.profile
     };
 
-    const res = await fetch(`${_URL}`, {
+    const res = await fetch(`${_URL}/user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -78,7 +77,7 @@ class Auth extends Component {
       password
     };
 
-    fetch(`${_URL}/login`, {
+    fetch(`${_URL}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -89,6 +88,7 @@ class Auth extends Component {
       .then(res => {
         if (res.access_token) {
           sessionStorage.setItem("access_token", res.access_token);
+          sessionStorage.setItem("user_id", res.user_id);
           alert("환영합니다, " + res.user_name + "님");
           Router.back();
         } else {
@@ -135,7 +135,7 @@ const Wrapper = styled.div`
   }
 
   @media only screen and (max-width: 920px) {
-    min-width: 550px;
+    min-width: 400px;
     width: 100%;
   }
 `;
