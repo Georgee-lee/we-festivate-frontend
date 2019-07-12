@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import fetch from "isomorphic-unfetch";
 import Link from "next/link";
-
-const _URL = "http://10.58.4.202:8000/user/info";
+import { _URL } from "../../config/constants";
 
 export default class Header extends React.Component {
   state = {
