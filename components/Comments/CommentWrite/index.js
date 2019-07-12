@@ -45,6 +45,7 @@ class CommentWrite extends React.Component {
     }
 
     const { postId, reply_text } = this.state;
+    const date = new Date().toLocaleString();
 
     const comment = {
       user_id,
@@ -69,7 +70,19 @@ class CommentWrite extends React.Component {
 
     if (result.reply_result) {
       alert(result.user_id + result.reply_message);
-      window.location.href = `/post/${postId}`;
+
+      const newComment = {
+        id: result.id,
+        user_id_id: user_id,
+        reply_text,
+        created_at: date
+      };
+
+      this.props.saveComment(newComment);
+
+      this.setState({
+        reply_text: ""
+      });
     } else {
       alert(result.reply_message);
     }
@@ -87,6 +100,7 @@ class CommentWrite extends React.Component {
     return (
       <div style={{ marginBottom: 20 }}>
         <InputBox
+          value={this.state.reply_text}
           onClick={this.checkUserName}
           onChange={e => this.handleChange(e)}
           disabled={token ? false : true}

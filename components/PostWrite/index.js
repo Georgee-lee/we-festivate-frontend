@@ -67,7 +67,7 @@ class PostWrite extends React.Component {
       max_rsvp
     } = this.state;
     const { user_id } = sessionStorage.getItem("user_id");
-
+    console.log(user_id);
     const data = {
       date,
       start_time,
@@ -80,22 +80,22 @@ class PostWrite extends React.Component {
       user_id
     };
 
-    const res = await fetch(`${_URL}/event/write`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    });
+    // const res = await fetch(`${_URL}/event/write`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(data)
+    // });
 
-    if (res.status >= 400) {
-      const result = await res.json();
-      alert(result.message);
-      return;
-    }
+    // if (res.status >= 400) {
+    //   const result = await res.json();
+    //   alert(result.message);
+    //   return;
+    // }
 
-    const result = await res.json();
-    console.log(result);
+    // const result = await res.json();
+    // console.log(result);
   };
 
   render() {

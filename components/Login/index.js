@@ -1,6 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import styled from "styled-components";
 import GoogleLogin from "react-google-login";
+import Router from "next/router";
 import { UserInput } from "../Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserEdit, faLock } from "@fortawesome/free-solid-svg-icons";
@@ -25,8 +26,30 @@ class Login extends React.Component {
     });
   }
 
-  responseGoogle = response => {
-    console.log(response);
+  responseGoogle = async res => {
+    const token = res.Zi["id_token"];
+
+    const response = await fetch(`http://10.58.3.229:8000/user/login/google`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token
+      }
+    });
+
+    if (response.status >= 400) {
+      alert("로그인 실패");
+      return;
+    }
+
+    const result = await response.json();
+
+    if (result.access_token) {
+      sessionStorage.setItem("access_token", result.access_token);
+      sessionStorage.setItem("user_name", result.user_name);
+      alert("환영합니다, " + result.user_name + "님");
+      Router.back();
+    }
   };
 
   render() {

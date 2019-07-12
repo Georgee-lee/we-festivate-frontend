@@ -36,11 +36,9 @@ class Index extends React.Component {
   }
 
   handleInput = e => {
-    console.log(e.target);
-
-    // this.setState({
-    //   title: e.targat.value
-    // });
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
   render() {

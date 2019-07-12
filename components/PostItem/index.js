@@ -22,14 +22,7 @@ const PostItem = props => {
           </div>
           <p style={{ marginLeft: "10px" }}>{props.date}</p>
           <div style={{ position: "absolute", bottom: 0, left: "10px" }}>
-            {props.max_rsvp === 0 ? (
-              <span>현재 신청인원 : {props.current_rsvp}</span>
-            ) : (
-              <>
-                <span>{props.current_rsvp}</span> /{" "}
-                <span>{props.max_rsvp}</span>
-              </>
-            )}
+            <span>{props.current_rsvp}</span> / <span>{props.max_rsvp}</span>
           </div>
         </PostDetailBox>
       </Post>

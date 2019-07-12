@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Apercu";
+  font-display: "optional";
+  src: url("../static/Fonts/apercu_regular_webfont.woff") format("woff");
+}
+
 .rc-time-picker {
   display: inline-block;
   position: relative;

@@ -13,7 +13,9 @@ import { _URL } from "../config/constants";
 class Post extends React.Component {
   state = {
     post: {},
-    isJoin: false
+    isJoin: false,
+    event_reply: [],
+    current_rsvp: ""
   };
 
   componentDidMount = async () => {
@@ -48,7 +50,9 @@ class Post extends React.Component {
       }
 
       this.setState({
-        post: data
+        post: data,
+        event_reply: data.event_reply,
+        current_rsvp: data.current_rsvp
       });
     } catch (e) {
       console.log(e);
@@ -82,18 +86,28 @@ class Post extends React.Component {
       return;
     } else {
       alert(data.rsvp_message);
-      window.location.href = `/post/${postId}`;
+
+      this.setState({
+        current_rsvp: data.current_rsvp
+      });
     }
+  };
+
+  saveComment = comment => {
+    this.setState({
+      event_reply: [comment, ...this.state.event_reply]
+    });
   };
 
   render() {
     const BG_IMG = "https://en.trippose.com/img/bg/bokeh-514948_1920.jpg";
-    const { post } = this.state;
+    const { post, event_reply, current_rsvp } = this.state;
     let date = "";
 
     if (post.date) {
       date = changeDateForm(post.date);
     }
+    const max = post.max_rsvp >= 999999 ? "제한없음" : post.max_rsvp;
 
     return (
       <>
@@ -125,8 +139,7 @@ class Post extends React.Component {
                 <InfoBox>
                   <InfoSpan>
                     <FontAwesomeIcon icon={faUsers} />
-                    &nbsp;&nbsp; {post.current_rsvp}명 /&nbsp;{" "}
-                    {post.max_rsvp > 0 ? post.max_rsvp + "명" : "제한없음"}
+                    &nbsp;&nbsp; {current_rsvp}명 /&nbsp; {max}
                   </InfoSpan>
                   <JoinBtn
                     className="rsvp"
@@ -143,10 +156,10 @@ class Post extends React.Component {
                 <Map lat={post.latitude} lng={post.longitude} />
                 <br />
                 <br />
-                <h2>Comments({post.event_reply.length})</h2>
+                <h2>Comments({event_reply.length})</h2>
 
-                {post.event_reply ? (
-                  <CommentList List={post.event_reply} />
+                {event_reply.length > 0 ? (
+                  <CommentList list={event_reply} />
                 ) : (
                   <div style={{ width: "90%", height: 150 }}>
                     <hr />
@@ -154,7 +167,10 @@ class Post extends React.Component {
                 )}
 
                 <h2 style={{ marginBottom: 10 }}>Comment</h2>
-                <CommentWrite postId={this.props.url.query.id} />
+                <CommentWrite
+                  postId={this.props.url.query.id}
+                  saveComment={this.saveComment}
+                />
               </PostWrap>
             </DetailBox>
           </Layout>

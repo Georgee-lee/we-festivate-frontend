@@ -13,6 +13,7 @@ const PostList = props => {
           // 날짜 스트링 포맷 변경
           const strDate = post.date;
           const date = changeDateForm(strDate);
+          const max = post.max_rsvp >= 999999 ? "제한없음" : post.max_rsvp;
 
           return (
             <PostItem
@@ -22,7 +23,7 @@ const PostList = props => {
               building__name={post.building__name}
               date={date}
               image={post.photo_url}
-              max_rsvp={post.max_rsvp}
+              max_rsvp={max}
               current_rsvp={post.current_rsvp}
               user_id={user_id}
             />

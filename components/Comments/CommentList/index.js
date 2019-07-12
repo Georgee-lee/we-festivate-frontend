@@ -1,15 +1,16 @@
 import styled from "styled-components";
 import Comment from "../Comment";
 
-const CommentList = ({ List }) => {
+const CommentList = ({ list }) => {
   return (
     <Wrapper>
-      {List.map(item => {
+      {list.map(item => {
         return (
           <Comment
             key={item.id}
             user_id={item.user_id_id}
             comment={item.reply_text}
+            time={item.created_at}
           />
         );
       })}
