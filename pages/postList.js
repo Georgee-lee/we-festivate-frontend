@@ -148,7 +148,6 @@ class BoardList extends React.Component {
 
 const SearchWrap = styled.div`
   width: 100%;
-  min-width: 500px;
   max-width: 1920px;
   height: 200px;
   position: relative;

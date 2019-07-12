@@ -131,7 +131,9 @@ class Post extends React.Component {
                   <JoinBtn
                     className="rsvp"
                     onClick={this.handleJoin}
-                    disabled={this.state.isJoin}
+                    disabled={
+                      !sessionStorage.getItem("user_id") || this.state.isJoin
+                    }
                   >
                     {this.state.isJoin ? "참여완료" : "RSVP"}
                   </JoinBtn>
@@ -141,7 +143,7 @@ class Post extends React.Component {
                 <Map lat={post.latitude} lng={post.longitude} />
                 <br />
                 <br />
-                <h2>Comments({post.event_reply.length} )</h2>
+                <h2>Comments({post.event_reply.length})</h2>
 
                 {post.event_reply ? (
                   <CommentList List={post.event_reply} />
@@ -152,7 +154,7 @@ class Post extends React.Component {
                 )}
 
                 <h2 style={{ marginBottom: 10 }}>Comment</h2>
-                <CommentWrite postId="11" />
+                <CommentWrite postId={this.props.url.query.id} />
               </PostWrap>
             </DetailBox>
           </Layout>
