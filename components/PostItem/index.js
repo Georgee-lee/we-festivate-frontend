@@ -5,8 +5,6 @@ import { CardImage } from "../CardImage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
-// 여기서 user_id를 넘겨야 하는데 그 방법을 모르겠다 !!!!
-
 const PostItem = props => {
   return (
     <Link as={`/post/${props.id}`} href={`'/post?${props.id}`}>

@@ -4,9 +4,8 @@ import GoogleLogin from "react-google-login";
 import { UserInput } from "../Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserEdit, faLock } from "@fortawesome/free-solid-svg-icons";
-import { GoogleLoginButton, LoginButton } from "../Button";
-
-const KAKAO_KEY = "f800696839cb279f7fa590b7a1406a95";
+import { LoginButton } from "../Button";
+import { KAKAO_KEY } from "../../config/constants";
 
 class Login extends React.Component {
   componentDidMount() {

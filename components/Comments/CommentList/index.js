@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Comment from "../Comment/Index";
+import Comment from "../Comment";
 
 const CommentList = ({ List }) => {
   return (

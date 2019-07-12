@@ -4,6 +4,7 @@ import TimePicker from "rc-time-picker";
 import moment from "moment";
 import { SelectButton } from "../SelectBar";
 import { PostWriteButton } from "../Button";
+import { _URL } from "../../config/constants";
 
 const format = "h:mm a";
 const now = moment()
@@ -12,13 +13,13 @@ const now = moment()
 
 class PostWrite extends React.Component {
   state = {
-    startDate: new Date(),
+    date: new Date(),
     start_time: now,
     end_time: now,
     title: "",
-    building: "",
+    building_id: "",
     place: "",
-    content: "",
+    main_text: "",
     max_rsvp: ""
   };
 
@@ -38,13 +39,13 @@ class PostWrite extends React.Component {
 
   handleDateChange = date => {
     this.setState({
-      startDate: date
+      date: date
     });
   };
 
   handleBuildingSelect = e => {
     this.setState({
-      building: e.target.value
+      building_id: e.target.value
     });
   };
 
@@ -54,8 +55,47 @@ class PostWrite extends React.Component {
     });
   };
 
-  handleClick = () => {
-    console.log("d");
+  handleClick = async () => {
+    const {
+      date,
+      start_time,
+      end_time,
+      title,
+      building_id,
+      place,
+      main_text,
+      max_rsvp
+    } = this.state;
+    const { user_id } = sessionStorage.getItem("user_id");
+
+    const data = {
+      date,
+      start_time,
+      end_time,
+      title,
+      building_id,
+      place,
+      main_text,
+      max_rsvp,
+      user_id
+    };
+
+    const res = await fetch(`${_URL}/event/write`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (res.status >= 400) {
+      const result = await res.json();
+      alert(result.message);
+      return;
+    }
+
+    const result = await res.json();
+    console.log(result);
   };
 
   render() {
@@ -87,7 +127,7 @@ class PostWrite extends React.Component {
             <RightBox>
               <DatePicker
                 onChange={this.handleDateChange}
-                selected={this.state.startDate}
+                selected={this.state.date}
               />
               <br />
               <TimePicker
@@ -107,7 +147,7 @@ class PostWrite extends React.Component {
                 inputReadOnly
               />
               <input
-                style={{ width: 470 }}
+                style={{ width: 470, fontSize: 15 }}
                 type="text"
                 name="place"
                 value={this.state.place}
@@ -116,7 +156,7 @@ class PostWrite extends React.Component {
               />
               <SelectButton
                 onChange={this.handleBuildingSelect}
-                value={this.state.building}
+                value={this.state.building_id}
               />
               <input
                 style={{ width: 150, height: 45, marginTop: 18 }}
@@ -137,7 +177,7 @@ class PostWrite extends React.Component {
               <textarea
                 rows="5"
                 col="50"
-                name="content"
+                name="main_text"
                 style={{ width: "100%", height: "35%" }}
                 onChange={e => this.handleInputChange(e)}
               />
