@@ -1,8 +1,35 @@
+/*
+const express = require('express');
+const path = require('path');
+const app = express();
+
+app.get('/ping', function(req, res) {
+  res.send('pong');
+});
+
+app.use('/', express.static(path.join(__dirname, 'build')));
+
+app.get('/*', function (req, res) {
+  res.set({
+    "Cache-Control": "no-cache, no-store, must-revalidate",
+    "Pragma": "no-cache",
+    "Date": new Date()
+  });
+
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+app.listen(8080, () => {
+  console.log('success!');
+});
+*/
+
 const express = require("express");
 const next = require("next");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
+
 const handle = app.getRequestHandler();
 const port = dev ? 3000 : 8080;
 
@@ -25,8 +52,8 @@ app
 
     server.get("/post/:id", (req, res) => {
       const realPage = "/post";
-      console.log(req.parmas);
-      const params = { id: req.params.id, user_id: req.params.user_id };
+
+      const params = { id: req.params.id };
       app.render(req, res, realPage, params);
     });
 

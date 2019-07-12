@@ -16,7 +16,13 @@ export const UserInput = props => {
 
 export const SearchInput = props => {
   return (
-    <SearchInputBox type="text" placeholder="What event you want? Search it!" />
+    <SearchInputBox
+      type="text"
+      placeholder="What event you want? Search it!"
+      name="title"
+      value={props.value}
+      onChange={e => props.onChange(e)}
+    />
   );
 };
 

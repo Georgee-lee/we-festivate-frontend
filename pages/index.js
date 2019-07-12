@@ -10,7 +10,8 @@ import { _URL } from "../config/constants";
 class Index extends React.Component {
   state = {
     recommandPostList: [],
-    latestPostList: []
+    latestPostList: [],
+    title: ""
   };
 
   async componentDidMount() {
@@ -34,8 +35,16 @@ class Index extends React.Component {
     }
   }
 
+  handleInput = e => {
+    console.log(e.target);
+
+    // this.setState({
+    //   title: e.targat.value
+    // });
+  };
+
   render() {
-    const { recommandPostList, latestPostList } = this.state;
+    const { recommandPostList, latestPostList, title } = this.state;
 
     return (
       <Layout style={{ margin: 0, padding: 0 }}>
@@ -54,7 +63,7 @@ class Index extends React.Component {
               />
               <SearchBox>
                 <SearchLeft>
-                  <SearchInput />
+                  <SearchInput value={title} onChange={this.handleInput} />
                 </SearchLeft>
                 <SearchRight>
                   <SearchButton />
@@ -165,6 +174,10 @@ const SearchBox = styled.div`
     content: "";
     border: 17px solid transparent;
     border-bottom-color: #59c45a;
+
+    @media only screen and (max-width: 950px) {
+      top: -29%;
+    }
   }
 
   @media only screen and (max-width: 950px) {

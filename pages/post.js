@@ -11,14 +11,19 @@ import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { _URL } from "../config/constants";
 
 class Post extends React.Component {
-  static async getInitialProps({ query }) {
-    const postId = query.id;
-    const user_id = query.user_id;
+  state = {
+    post: {},
+    isJoin: false
+  };
 
-    console.log(postId, user_id);
+  componentDidMount = async () => {
+    const user_id = sessionStorage.getItem("user_id")
+      ? sessionStorage.getItem("user_id")
+      : "none";
+    const postId = this.props.url.query.id;
 
-    const test = {
-      user_id: user_id
+    const json = {
+      user_id
     };
 
     try {
@@ -27,7 +32,7 @@ class Post extends React.Component {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(test)
+        body: JSON.stringify(json)
       });
 
       if (res.status >= 400) {
@@ -36,75 +41,125 @@ class Post extends React.Component {
 
       const data = await res.json();
 
-      return { postId, data };
+      if (data.rsvp_result) {
+        this.setState({
+          isJoin: true
+        });
+      }
+
+      this.setState({
+        post: data
+      });
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
-  state = {
-    post: {}
+  handleJoin = async () => {
+    const user_id = sessionStorage.getItem("user_id");
+    const postId = this.props.url.query.id;
+
+    const json = {
+      user_id
+    };
+
+    const res = await fetch(`${_URL}/event/detail/${postId}/rsvp`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(json)
+    });
+
+    if (res.status >= 400) {
+      throw new Error("Failed to fetch data");
+    }
+
+    const data = await res.json();
+
+    if (!data.rsvp_result) {
+      alert(data.rsvp_message);
+      return;
+    } else {
+      alert(data.rsvp_message);
+      window.location.href = `/post/${postId}`;
+    }
   };
 
   render() {
     const BG_IMG = "https://en.trippose.com/img/bg/bokeh-514948_1920.jpg";
-    const { postId, data } = this.props;
-    const date = changeDateForm(data.date);
+    const { post } = this.state;
+    let date = "";
+
+    if (post.date) {
+      date = changeDateForm(post.date);
+    }
 
     return (
-      <Layout>
-        <PostBox image={BG_IMG} />
-        <DetailBox>
-          <PostWrap>
-            <PostHeader>
-              <ImageBox url={data.photo_url} />
-              <TitleBox>
-                <TitleHead>
-                  <h2 style={{ fontSize: 30, margin: 0 }}>{data.title}</h2>
-                  <p style={{ color: "gray", fontSize: 20, marginTop: 5 }}>
-                    at {data.building} &nbsp; {data.place}
-                  </p>
-                  <br />
-                  <p style={{ fontWeight: "bold", marginBottom: 20 }}>일시</p>
-                  <p style={{ margin: "0 0 5px 0" }}>{date}</p>
-                  <p style={{ margin: 0 }}>
-                    {data.start_time} ~ {data.end_time}
-                  </p>
-                </TitleHead>
-              </TitleBox>
-            </PostHeader>
+      <>
+        {post.title && (
+          <Layout>
+            <PostBox image={BG_IMG} />
+            <DetailBox>
+              <PostWrap>
+                <PostHeader>
+                  <ImageBox url={post.photo_url} />
+                  <TitleBox>
+                    <TitleHead>
+                      <h2 style={{ fontSize: 30, margin: 0 }}>{post.title}</h2>
+                      <p style={{ color: "gray", fontSize: 20, marginTop: 5 }}>
+                        at {post.building} &nbsp; {post.place}
+                      </p>
+                      <br />
+                      <p style={{ fontWeight: "bold", marginBottom: 20 }}>
+                        일시
+                      </p>
+                      <p style={{ margin: "0 0 5px 0" }}>{date}</p>
+                      <p style={{ margin: 0 }}>
+                        {post.start_time} ~ {post.end_time}
+                      </p>
+                    </TitleHead>
+                  </TitleBox>
+                </PostHeader>
 
-            {/* 인원수와 신청 버튼 있는 곳 */}
-            <InfoBox>
-              <InfoSpan>
-                <FontAwesomeIcon icon={faUsers} />
-                &nbsp;&nbsp; {data.current_rsvp}명 /&nbsp;{" "}
-                {data.max_rsvp > 0 ? data.max_rsvp + "명" : "제한없음"}
-              </InfoSpan>
-              <JoinBtn className="rsvp">RSVP</JoinBtn>
-              <ShareBtn className="share">SNS에 공유</ShareBtn>
-            </InfoBox>
-            {/* 본문이 위치한 곳 */}
-            <InfoInner>{data.main_text}</InfoInner>
-            {/* 지도가 위치한 곳 */}
-            <Map lat={data.latitude} lng={data.longitude} />
-            <br />
-            <br />
-            <h2>Comments(0)</h2>
-            {/* 댓글 등록되면 나오는 곳 */}
-            {data.comments ? (
-              <CommentList List={data.comments} />
-            ) : (
-              <div style={{ width: "90%", height: 150 }}>
-                <hr />
-              </div>
-            )}
-            {/* 댓글 작성하는 곳 */}
-            <h2 style={{ marginBottom: 10 }}>Comment</h2>
-            <CommentWrite postId="11" />
-          </PostWrap>
-        </DetailBox>
-      </Layout>
+                <InfoBox>
+                  <InfoSpan>
+                    <FontAwesomeIcon icon={faUsers} />
+                    &nbsp;&nbsp; {post.current_rsvp}명 /&nbsp;{" "}
+                    {post.max_rsvp > 0 ? post.max_rsvp + "명" : "제한없음"}
+                  </InfoSpan>
+                  <JoinBtn
+                    className="rsvp"
+                    onClick={this.handleJoin}
+                    disabled={
+                      !sessionStorage.getItem("user_id") || this.state.isJoin
+                    }
+                  >
+                    {this.state.isJoin ? "참여완료" : "RSVP"}
+                  </JoinBtn>
+                  <ShareBtn className="share">SNS에 공유</ShareBtn>
+                </InfoBox>
+                <InfoInner>{post.main_text}</InfoInner>
+                <Map lat={post.latitude} lng={post.longitude} />
+                <br />
+                <br />
+                <h2>Comments({post.event_reply.length})</h2>
+
+                {post.event_reply ? (
+                  <CommentList List={post.event_reply} />
+                ) : (
+                  <div style={{ width: "90%", height: 150 }}>
+                    <hr />
+                  </div>
+                )}
+
+                <h2 style={{ marginBottom: 10 }}>Comment</h2>
+                <CommentWrite postId={this.props.url.query.id} />
+              </PostWrap>
+            </DetailBox>
+          </Layout>
+        )}
+      </>
     );
   }
 }

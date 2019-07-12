@@ -4,7 +4,7 @@ import PostItem from "../PostItem"; // 각각의 포스트 Div
 import { changeDateForm } from "../../helper/changeDateForm";
 
 const PostList = props => {
-  const { list } = props;
+  const { list, user_id } = props;
 
   return (
     <Wrapper>
@@ -24,6 +24,7 @@ const PostList = props => {
               image={post.photo_url}
               max_rsvp={post.max_rsvp}
               current_rsvp={post.current_rsvp}
+              user_id={user_id}
             />
           );
         })}
@@ -46,15 +47,12 @@ const GridWrap = styled.div`
 
   @media only screen and (max-width: 1125px) {
     grid-template-columns: 33% 33% 33%;
-    grid-template-rows: 350px 350px 350px;
   }
   @media only screen and (max-width: 950px) {
     grid-template-columns: 50% 50%;
-    grid-template-rows: repeat(5, 350px);
   }
   @media only screen and (max-width: 680px) {
     grid-template-columns: 100%;
-    grid-template-rows: repeat(8, 350px);
   }
 `;
 

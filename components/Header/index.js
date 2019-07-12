@@ -34,6 +34,7 @@ export default class Header extends React.Component {
 
   handleLogout = () => {
     sessionStorage.removeItem("access_token");
+    sessionStorage.removeItem("user_id");
     alert("로그아웃 되었습니다");
 
     window.location.href = "/";
