@@ -82,7 +82,7 @@ class Post extends React.Component {
     const data = await res.json();
 
     if (!data.rsvp_result) {
-      alert("오류가 발생했습니다.");
+      alert("참여 가능 인원이 다 찼습니다.");
       return;
     } else {
       alert("참여 신청 완료");
