@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-const Comment = ({ user_id, comment, time }) => {
+const Comment = ({ user_name, comment, time }) => {
   return (
     <PostWrap>
       <Left>
-        <p style={{ margin: "0 0 10px 0" }}>{user_id}</p>
+        <p style={{ margin: "0 0 10px 0" }}>{user_name}</p>
         <span>{time}</span>
       </Left>
       <Right>

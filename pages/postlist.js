@@ -8,6 +8,19 @@ import DatePicker from "react-datepicker-styled-components";
 import { _URL } from "../config/constants";
 
 class BoardList extends React.Component {
+  static async getInitialProps(props) {
+    let query = decodeURIComponent(props.asPath);
+    query = query.slice(props.asPath.indexOf("=") + 1);
+
+    if (query.indexOf("/") !== -1) {
+      return { No: "no" };
+    } else {
+      return {
+        query
+      };
+    }
+  }
+
   state = {
     user_id: "",
     posts: [],
@@ -18,20 +31,48 @@ class BoardList extends React.Component {
   };
 
   componentDidMount = async () => {
-    const res = await fetch(`${_URL}/event/all?start=0&end=8`);
-    const json = await res.json();
+    if (this.props.query) {
+      console.log(this.props.query);
 
-    const user_id = sessionStorage.getItem("user_id");
+      const title = {
+        title_query: this.props.query
+      };
 
-    if (user_id) {
+      const res = await fetch(`${_URL}/event/title_search`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(title)
+      });
+
+      if (res.status >= 400) {
+        throw new Error("Failed to fetch data");
+      }
+
+      const searchlist = await res.json();
+
       this.setState({
-        user_id
+        posts: searchlist
+      });
+
+      return;
+    } else {
+      const res = await fetch(`${_URL}/event/all?start=0&end=8`);
+      const json = await res.json();
+
+      this.setState({
+        posts: json
       });
     }
 
-    this.setState({
-      posts: json
-    });
+    const user_pk = sessionStorage.getItem("user_pk");
+
+    if (user_pk) {
+      this.setState({
+        user_pk
+      });
+    }
   };
 
   handleChange = e => {
@@ -59,7 +100,6 @@ class BoardList extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(e);
     const { title, start_date, end_date, building } = this.state;
   };
 
@@ -118,7 +158,7 @@ class BoardList extends React.Component {
         {posts.length > 0 ? (
           <>
             <div style={{ width: "75%", margin: "105px auto 0" }}>
-              <PostList list={posts} user_id={this.state.user_id} />
+              <PostList list={posts} />
             </div>
             <MoreBtnWrap>
               <MoreBtnDiv>

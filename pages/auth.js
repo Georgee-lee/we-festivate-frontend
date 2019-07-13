@@ -26,6 +26,13 @@ class Auth extends Component {
   handleSignup = async () => {
     const { id, pw, email, name } = this.state;
 
+    const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+    if (email.match(regExp) === null) {
+      alert("올바른 이메일 주소를 작성해 주세요");
+      return;
+    }
+
     if (!id) {
       alert("아이디를 입력해 주세요");
     } else if (!pw) {
@@ -88,7 +95,8 @@ class Auth extends Component {
       .then(res => {
         if (res.access_token) {
           sessionStorage.setItem("access_token", res.access_token);
-          sessionStorage.setItem("user_id", res.user_id);
+          sessionStorage.setItem("user_name", res.user_name);
+          sessionStorage.setItem("user_pk", res.user_pk);
           alert("환영합니다, " + res.user_name + "님");
           Router.back();
         } else {

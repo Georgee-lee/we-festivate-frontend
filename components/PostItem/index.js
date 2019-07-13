@@ -5,24 +5,32 @@ import { CardImage } from "../CardImage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
-const PostItem = props => {
+const PostItem = ({
+  id,
+  image,
+  title,
+  building__name,
+  date,
+  current_rsvp,
+  max_rsvp
+}) => {
   return (
-    <Link as={`/post/${props.id}`} href={`'/post?${props.id}`}>
-      <Post key={props.id}>
-        <CardImage url={props.image} />
+    <Link as={`/post/${id}`} href={`/post/${id}`}>
+      <Post key={id}>
+        <CardImage url={image} />
         <PostDetailBox>
           <h4 style={{ margin: "10px", padding: 0, fontSize: 15 }}>
-            <b>{props.title}</b>
+            <b>{title}</b>
           </h4>
           <div style={{ position: "absolute", bottom: 0, right: "10px" }}>
             <FontAwesomeIcon icon={faMapMarkerAlt} />
             <p style={{ display: "inline-block", marginLeft: "5px" }}>
-              {props.building__name}
+              {building__name}
             </p>
           </div>
-          <p style={{ marginLeft: "10px" }}>{props.date}</p>
+          <p style={{ marginLeft: "10px" }}>{date}</p>
           <div style={{ position: "absolute", bottom: 0, left: "10px" }}>
-            <span>{props.current_rsvp}</span> / <span>{props.max_rsvp}</span>
+            <span>{current_rsvp}</span> / <span>{max_rsvp}</span>
           </div>
         </PostDetailBox>
       </Post>

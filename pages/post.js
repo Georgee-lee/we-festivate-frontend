@@ -5,7 +5,6 @@ import CommentList from "../components/Comments/CommentList";
 import CommentWrite from "../components/Comments/CommentWrite";
 import { Box } from "./index";
 import Map from "../components/Map";
-import { changeDateForm } from "../helper/changeDateForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { _URL } from "../config/constants";
@@ -13,19 +12,22 @@ import { _URL } from "../config/constants";
 class Post extends React.Component {
   state = {
     post: {},
-    isJoin: false,
-    event_reply: [],
-    current_rsvp: ""
+    isJoin: false
   };
 
   componentDidMount = async () => {
-    const user_id = sessionStorage.getItem("user_id")
-      ? sessionStorage.getItem("user_id")
-      : "none";
+    const user_pk = sessionStorage.getItem("user_pk");
+
+    let login_state = 0;
+    if (user_pk) {
+      login_state = 1;
+    }
+
     const postId = this.props.url.query.id;
 
     const json = {
-      user_id
+      user_pk,
+      login_state
     };
 
     try {
@@ -50,9 +52,7 @@ class Post extends React.Component {
       }
 
       this.setState({
-        post: data,
-        event_reply: data.event_reply,
-        current_rsvp: data.current_rsvp
+        post: data
       });
     } catch (e) {
       console.log(e);
@@ -60,11 +60,11 @@ class Post extends React.Component {
   };
 
   handleJoin = async () => {
-    const user_id = sessionStorage.getItem("user_id");
+    const user_pk = sessionStorage.getItem("user_pk");
     const postId = this.props.url.query.id;
 
     const json = {
-      user_id
+      user_pk
     };
 
     const res = await fetch(`${_URL}/event/detail/${postId}/rsvp`, {
@@ -82,31 +82,18 @@ class Post extends React.Component {
     const data = await res.json();
 
     if (!data.rsvp_result) {
-      alert(data.rsvp_message);
+      alert("오류가 발생했습니다.");
       return;
     } else {
-      alert(data.rsvp_message);
-
-      this.setState({
-        current_rsvp: data.current_rsvp
-      });
+      alert("참여 신청 완료");
+      window.location.reload();
     }
-  };
-
-  saveComment = comment => {
-    this.setState({
-      event_reply: [comment, ...this.state.event_reply]
-    });
   };
 
   render() {
     const BG_IMG = "https://en.trippose.com/img/bg/bokeh-514948_1920.jpg";
-    const { post, event_reply, current_rsvp } = this.state;
-    let date = "";
+    const { post } = this.state;
 
-    if (post.date) {
-      date = changeDateForm(post.date);
-    }
     const max = post.max_rsvp >= 999999 ? "제한없음" : post.max_rsvp;
 
     return (
@@ -128,7 +115,7 @@ class Post extends React.Component {
                       <p style={{ fontWeight: "bold", marginBottom: 20 }}>
                         일시
                       </p>
-                      <p style={{ margin: "0 0 5px 0" }}>{date}</p>
+                      <p style={{ margin: "0 0 5px 0" }}>{post.date}</p>
                       <p style={{ margin: 0 }}>
                         {post.start_time} ~ {post.end_time}
                       </p>
@@ -139,13 +126,13 @@ class Post extends React.Component {
                 <InfoBox>
                   <InfoSpan>
                     <FontAwesomeIcon icon={faUsers} />
-                    &nbsp;&nbsp; {current_rsvp}명 /&nbsp; {max}
+                    &nbsp;&nbsp; {post.current_rsvp}명 /&nbsp; {max}
                   </InfoSpan>
                   <JoinBtn
                     className="rsvp"
                     onClick={this.handleJoin}
                     disabled={
-                      !sessionStorage.getItem("user_id") || this.state.isJoin
+                      !sessionStorage.getItem("user_pk") || this.state.isJoin
                     }
                   >
                     {this.state.isJoin ? "참여완료" : "RSVP"}
@@ -156,10 +143,10 @@ class Post extends React.Component {
                 <Map lat={post.latitude} lng={post.longitude} />
                 <br />
                 <br />
-                <h2>Comments({event_reply.length})</h2>
+                <h2>Comments({post.event_comment.length})</h2>
 
-                {event_reply.length > 0 ? (
-                  <CommentList list={event_reply} />
+                {post.event_comment.length > 0 ? (
+                  <CommentList list={post.event_comment} />
                 ) : (
                   <div style={{ width: "90%", height: 150 }}>
                     <hr />
@@ -167,10 +154,7 @@ class Post extends React.Component {
                 )}
 
                 <h2 style={{ marginBottom: 10 }}>Comment</h2>
-                <CommentWrite
-                  postId={this.props.url.query.id}
-                  saveComment={this.saveComment}
-                />
+                <CommentWrite postId={this.props.url.query.id} />
               </PostWrap>
             </DetailBox>
           </Layout>

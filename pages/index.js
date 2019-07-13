@@ -41,6 +41,11 @@ class Index extends React.Component {
     });
   };
 
+  handleSearch = async e => {
+    const { title } = this.state;
+    window.location.href = `/postlist?query=${title}`;
+  };
+
   render() {
     const { recommandPostList, latestPostList, title } = this.state;
 
@@ -64,7 +69,7 @@ class Index extends React.Component {
                   <SearchInput value={title} onChange={this.handleInput} />
                 </SearchLeft>
                 <SearchRight>
-                  <SearchButton />
+                  <SearchButton onClick={this.handleSearch} />
                 </SearchRight>
               </SearchBox>
             </SearchInnerWrap>

@@ -33,7 +33,8 @@ export default class Header extends React.Component {
 
   handleLogout = () => {
     sessionStorage.removeItem("access_token");
-    sessionStorage.removeItem("user_id");
+    sessionStorage.removeItem("user_name");
+    sessionStorage.removeItem("user_pk");
     alert("로그아웃 되었습니다");
 
     window.location.href = "/";
@@ -71,19 +72,7 @@ export default class Header extends React.Component {
                 Logout
               </p>
 
-              {user_type !== 3 ? (
-                <Link href="/mypage">
-                  <p
-                    style={{
-                      display: "inline-block",
-                      paddingLeft: 15,
-                      cursor: "pointer"
-                    }}
-                  >
-                    MyPage
-                  </p>
-                </Link>
-              ) : (
+              {user_type === 3 && (
                 <Link href="/admin">
                   <p
                     style={{

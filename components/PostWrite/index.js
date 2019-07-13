@@ -7,6 +7,7 @@ import { PostWriteButton } from "../Button";
 import { _URL } from "../../config/constants";
 
 const format = "h:mm a";
+
 const now = moment()
   .hour(0)
   .minute(0);
@@ -20,18 +21,19 @@ class PostWrite extends React.Component {
     building_id: "",
     place: "",
     main_text: "",
-    max_rsvp: ""
+    max_rsvp: "",
+    photo_url: ""
   };
 
   handleStartTimeChange = value => {
-    let time = value.format(format);
+    const time = value.format(format);
     this.setState({
       start_time: time
     });
   };
 
   handleEndTimeChange = value => {
-    let time = value.format(format);
+    const time = value.format(format);
     this.setState({
       end_time: time
     });
@@ -64,38 +66,41 @@ class PostWrite extends React.Component {
       building_id,
       place,
       main_text,
-      max_rsvp
+      max_rsvp,
+      photo_url
     } = this.state;
-    const { user_id } = sessionStorage.getItem("user_id");
-    console.log(user_id);
+    const user_pk = sessionStorage.getItem("user_pk");
+
     const data = {
-      date,
-      start_time,
-      end_time,
+      date: date.toLocaleString().slice(0, 11),
+      start_time: start_time.toString(),
+      end_time: end_time.toString(),
       title,
       building_id,
       place,
       main_text,
       max_rsvp,
-      user_id
+      user_pk,
+      photo_url
     };
 
-    // const res = await fetch(`${_URL}/event/write`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify(data)
-    // });
+    const res = await fetch(`${_URL}/event/write`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
 
-    // if (res.status >= 400) {
-    //   const result = await res.json();
-    //   alert(result.message);
-    //   return;
-    // }
+    if (res.status >= 400) {
+      alert("오류가 발생했습니다.");
+      return;
+    }
 
-    // const result = await res.json();
-    // console.log(result);
+    const result = await res.json();
+
+    alert("포스트 작성 완료");
+    window.location.href = `/post/${result.event_id}`;
   };
 
   render() {
@@ -120,7 +125,7 @@ class PostWrite extends React.Component {
                 <li>장소</li>
                 <li>지점</li>
                 <li>제한인원</li>
-                <li>썸네일 이미지</li>
+                <li>썸네일 이미지 url</li>
                 <li>본문 작성</li>
               </ul>
             </LeftBox>
@@ -169,8 +174,10 @@ class PostWrite extends React.Component {
               <br />
               <input
                 style={{ width: 150, height: 30, margin: "10px auto 5px" }}
-                type="file"
-                onChange={this.onChange}
+                type="text"
+                value={this.state.photo_url}
+                name="photo_url"
+                onChange={e => this.handleInputChange(e)}
               />
               <br />
               <br />

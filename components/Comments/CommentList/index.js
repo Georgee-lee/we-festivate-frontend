@@ -8,8 +8,8 @@ const CommentList = ({ list }) => {
         return (
           <Comment
             key={item.id}
-            user_id={item.user_id_id}
-            comment={item.reply_text}
+            user_name={item.user__name}
+            comment={item.comment_text}
             time={item.created_at}
           />
         );
