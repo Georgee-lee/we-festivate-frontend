@@ -5,7 +5,7 @@ import { _URL } from "../../../config/constants";
 class CommentWrite extends React.Component {
   state = {
     postId: this.props.postId,
-    reply_text: ""
+    comment: ""
   };
 
   checkUserName = async () => {
@@ -14,70 +14,47 @@ class CommentWrite extends React.Component {
     if (!access_token) {
       alert("로그인이 필요합니다");
     }
-
-    // TOKEN이 있으면 로그인 한 상태니까 바로 통신하면 된다.
-    // if (access_token) {
-    //   const res = await fetch(`${_URL}/abcd`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Authorization: access_token
-    //     }
-    //   });
-
-    //   if (res.status >= 400) {
-    //     const result = await res.json();
-    //     alert(result.message);
-    //     return;
-    //   }
-
-    //   const name = await res.json();
-    //   console.log(name);
-    // }
-    // TOKEN이 없다면 로그인 안 한 거니까 로그인 하라고 경고창 띄우기
   };
 
   handleSubmit = async () => {
-    const user_id = sessionStorage.getItem("user_id");
+    const user_pk = sessionStorage.getItem("user_pk");
 
-    if (!user_id) {
+    if (!user_pk) {
       return;
     }
 
-    const { postId, reply_text } = this.state;
+    const { postId, comment } = this.state;
+    const date = new Date().toLocaleString();
 
-    const comment = {
-      user_id,
-      reply_text
+    const newComment = {
+      user_pk,
+      comment_text: comment,
+      created_at: date
     };
 
-    const res = await fetch(`${_URL}/event/detail/${postId}/reply`, {
+    const res = await fetch(`${_URL}/event/detail/${postId}/comment`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(comment)
+      body: JSON.stringify(newComment)
     });
 
     if (res.status >= 400) {
-      const result = await res.json();
-      alert(result.message);
+      alert("오류가 발생했습니다.");
       return;
     }
 
     const result = await res.json();
 
-    if (result.reply_result) {
-      alert(result.user_id + result.reply_message);
-      window.location.href = `/post/${postId}`;
-    } else {
-      alert(result.reply_message);
+    if (result.comment_result) {
+      window.location.reload();
     }
   };
 
   handleChange = e => {
     this.setState({
-      reply_text: e.target.value
+      comment: e.target.value
     });
   };
 
@@ -87,6 +64,7 @@ class CommentWrite extends React.Component {
     return (
       <div style={{ marginBottom: 20 }}>
         <InputBox
+          value={this.state.comment}
           onClick={this.checkUserName}
           onChange={e => this.handleChange(e)}
           disabled={token ? false : true}

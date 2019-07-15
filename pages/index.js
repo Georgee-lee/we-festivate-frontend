@@ -36,11 +36,14 @@ class Index extends React.Component {
   }
 
   handleInput = e => {
-    console.log(e.target);
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
-    // this.setState({
-    //   title: e.targat.value
-    // });
+  handleSearch = async e => {
+    const { title } = this.state;
+    window.location.href = `/postlist?query=${title}`;
   };
 
   render() {
@@ -66,7 +69,7 @@ class Index extends React.Component {
                   <SearchInput value={title} onChange={this.handleInput} />
                 </SearchLeft>
                 <SearchRight>
-                  <SearchButton />
+                  <SearchButton onClick={this.handleSearch} />
                 </SearchRight>
               </SearchBox>
             </SearchInnerWrap>

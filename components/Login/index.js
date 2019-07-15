@@ -1,11 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
 import styled from "styled-components";
 import GoogleLogin from "react-google-login";
+import Router from "next/router";
 import { UserInput } from "../Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserEdit, faLock } from "@fortawesome/free-solid-svg-icons";
 import { LoginButton } from "../Button";
 import { KAKAO_KEY } from "../../config/constants";
+import { _URL } from "../../config/constants";
 
 class Login extends React.Component {
   componentDidMount() {
@@ -16,8 +18,33 @@ class Login extends React.Component {
     // 카카오 로그인 버튼을 생성합니다.
     Kakao.Auth.createLoginButton({
       container: "#kakao-login-btn",
-      success: function(authObj) {
-        console.log(JSON.stringify(authObj));
+      success: async authObj => {
+        const token = authObj["access_token"];
+
+        const response = await fetch(`${_URL}/user/login/kakao`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token
+          }
+        });
+
+        if (response.status >= 400) {
+          alert("로그인 실패");
+          return;
+        }
+
+        const result = await response.json();
+
+        if (result.message !== "ERROR") {
+          sessionStorage.setItem("access_token", result.access_token);
+          sessionStorage.setItem("user_name", result.user_name);
+          sessionStorage.setItem("user_pk", result.user_pk);
+          alert("환영합니다, " + result.user_name + "님");
+          Router.back();
+        } else {
+          alert("로그인 실패");
+        }
       },
       fail: function(err) {
         console.log(JSON.stringify(err));
@@ -25,8 +52,33 @@ class Login extends React.Component {
     });
   }
 
-  responseGoogle = response => {
-    console.log(response);
+  responseGoogle = async res => {
+    const token = res.Zi["id_token"];
+
+    const response = await fetch(`${_URL}/user/login/google`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token
+      }
+    });
+
+    if (response.status >= 400) {
+      alert("로그인 실패");
+      return;
+    }
+
+    const result = await response.json();
+
+    if (result.message !== "ERROR") {
+      sessionStorage.setItem("access_token", result.access_token);
+      sessionStorage.setItem("user_name", result.user_name);
+      sessionStorage.setItem("user_pk", result.user_pk);
+      alert("환영합니다, " + result.user_name + "님");
+      Router.back();
+    } else {
+      alert("로그인 실패");
+    }
   };
 
   render() {

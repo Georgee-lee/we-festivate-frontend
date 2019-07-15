@@ -10,11 +10,6 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    @font-face {
-      font-family: 'Apercu';
-      font-display: 'optional';
-      src: url('../static/Fonts/apercu_regular_webfont.woff') format('woff');
-    }
     font-family: 'Apercu', 'NanumSquare', sans-serif !important;
     font-display: 
     -moz-osx-font-smoothing: grayscale;
