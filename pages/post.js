@@ -82,8 +82,13 @@ class Post extends React.Component {
     const data = await res.json();
 
     if (!data.rsvp_result) {
-      alert("참여 가능 인원이 다 찼습니다.");
-      return;
+      if (data.rsvp_message === "rsvp_canceled") {
+        alert("참여 신청이 취소되었습니다.");
+        window.location.reload();
+      } else {
+        alert("참여 가능 인원이 다 찼습니다.");
+        return;
+      }
     } else {
       alert("참여 신청 완료");
       window.location.reload();
@@ -131,11 +136,9 @@ class Post extends React.Component {
                   <JoinBtn
                     className="rsvp"
                     onClick={this.handleJoin}
-                    disabled={
-                      !sessionStorage.getItem("user_pk") || this.state.isJoin
-                    }
+                    disabled={!sessionStorage.getItem("user_pk")}
                   >
-                    {this.state.isJoin ? "참여완료" : "RSVP"}
+                    {this.state.isJoin ? "신청취소" : "RSVP"}
                   </JoinBtn>
                   <ShareBtn className="share">SNS에 공유</ShareBtn>
                 </InfoBox>

@@ -35,7 +35,7 @@ const Wrapper = styled.div`
 const GridWrap = styled.div`
   display: grid;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   grid-gap: 2px;
   grid-template-columns: 25% 25% 25% 25%;
 

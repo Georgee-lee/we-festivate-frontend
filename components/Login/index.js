@@ -38,9 +38,8 @@ class Login extends React.Component {
 
         if (result.message !== "ERROR") {
           sessionStorage.setItem("access_token", result.access_token);
-          sessionStorage.setItem("user_name", result.user_name);
           sessionStorage.setItem("user_pk", result.user_pk);
-          alert("환영합니다, " + result.user_name + "님");
+          alert("환영합니다");
           Router.back();
         } else {
           alert("로그인 실패");
