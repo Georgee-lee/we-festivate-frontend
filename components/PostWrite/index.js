@@ -84,6 +84,9 @@ class PostWrite extends React.Component {
       photo_url
     };
 
+    console.log(start_time);
+    console.log(end_time);
+
     const res = await fetch(`${_URL}/event/write`, {
       method: "POST",
       headers: {
