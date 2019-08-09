@@ -8,6 +8,7 @@ import Map from "../components/Map";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { _URL } from "../config/constants";
+const BG_IMG = "https://en.trippose.com/img/bg/bokeh-514948_1920.jpg";
 
 class Post extends React.Component {
   state = {
@@ -96,7 +97,6 @@ class Post extends React.Component {
   };
 
   render() {
-    const BG_IMG = "https://en.trippose.com/img/bg/bokeh-514948_1920.jpg";
     const { post } = this.state;
 
     const max = post.max_rsvp >= 999999 ? "제한없음" : post.max_rsvp;
@@ -117,9 +117,7 @@ class Post extends React.Component {
                         at {post.building} &nbsp; {post.place}
                       </p>
                       <br />
-                      <p style={{ fontWeight: "bold", marginBottom: 20 }}>
-                        일시
-                      </p>
+                      <p style={{ fontWeight: "bold", marginBottom: 20 }}>일시</p>
                       <p style={{ margin: "0 0 5px 0" }}>{post.date}</p>
                       <p style={{ margin: 0 }}>
                         {post.start_time} ~ {post.end_time}
@@ -133,11 +131,7 @@ class Post extends React.Component {
                     <FontAwesomeIcon icon={faUsers} />
                     &nbsp;&nbsp; {post.current_rsvp}명 /&nbsp; {max}
                   </InfoSpan>
-                  <JoinBtn
-                    className="rsvp"
-                    onClick={this.handleJoin}
-                    disabled={!sessionStorage.getItem("user_pk")}
-                  >
+                  <JoinBtn className="rsvp" onClick={this.handleJoin} disabled={!sessionStorage.getItem("user_pk")}>
                     {this.state.isJoin ? "신청취소" : "RSVP"}
                   </JoinBtn>
                   <ShareBtn className="share">SNS에 공유</ShareBtn>

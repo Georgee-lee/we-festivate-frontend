@@ -59,11 +59,7 @@ class Index extends React.Component {
           {/* 동영상 안에 있는 검색창 */}
           <SearchWrap>
             <SearchInnerWrap>
-              <img
-                src="../static/Logo_W.png"
-                alt="logo"
-                style={{ paddingBottom: 10 }}
-              />
+              <img src="../static/Logo_W.png" alt="logo" style={{ paddingBottom: 10 }} />
               <SearchBox>
                 <SearchLeft>
                   <SearchInput value={title} onChange={this.handleInput} />
@@ -76,10 +72,7 @@ class Index extends React.Component {
           </SearchWrap>
         </Box>
 
-        <PostLabelBar
-          title="추천 이벤트"
-          subtitle="바로 참여 가능한 이벤트를 한눈에 보실 수 있습니다"
-        />
+        <PostLabelBar title="추천 이벤트" subtitle="바로 참여 가능한 이벤트를 한눈에 보실 수 있습니다" />
 
         {recommandPostList.length > 0 ? (
           <div style={{ width: "75%", margin: "0 auto" }}>
@@ -91,19 +84,14 @@ class Index extends React.Component {
           </div>
         )}
 
-        <PostLabelBar
-          title="전체 이벤트"
-          subtitle="등록된 이벤트 전체를 한눈에 보실 수 있습니다"
-        />
+        <PostLabelBar title="전체 이벤트" subtitle="등록된 이벤트 전체를 한눈에 보실 수 있습니다" />
 
         {latestPostList.length > 0 ? (
           <div style={{ width: "75%", margin: "0 auto" }}>
             <PostList list={latestPostList} />
           </div>
         ) : (
-          <div style={{ width: "75%", height: "30%", margin: "30px auto" }}>
-            현재 등록된 이벤트가 없습니다.
-          </div>
+          <div style={{ width: "75%", height: "30%", margin: "30px auto" }}>현재 등록된 이벤트가 없습니다.</div>
         )}
       </Layout>
     );
