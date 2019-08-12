@@ -109,9 +109,7 @@ class BoardList extends React.Component {
     const start_idx = posts.length;
     const last_idx = start_idx + 8;
 
-    const res = await fetch(
-      `${_URL}/event/all?start=${start_idx}&end=${last_idx}`
-    );
+    const res = await fetch(`${_URL}/event/all?start=${start_idx}&end=${last_idx}`);
     const data = await res.json();
 
     this.setState({
@@ -132,23 +130,11 @@ class BoardList extends React.Component {
               <label for="title">Date : </label>
             </LabelWrap>
             <InputWrap>
-              <PostInput
-                name="title"
-                value={title}
-                onChange={this.handleChange}
-              />
+              <PostInput name="title" value={title} onChange={this.handleChange} />
               <SelectButton building={building} onChange={this.handleSelect} />
-              <DatePicker
-                dateFormat="yyyy/MM/dd"
-                onChange={this.handleStartDateChange}
-                selected={startDate}
-              />
+              <DatePicker dateFormat="yyyy/MM/dd" onChange={this.handleStartDateChange} selected={startDate} />
               &nbsp; ~ &nbsp;
-              <DatePicker
-                dateFormat="yyyy/MM/dd"
-                onChange={this.handleEndDateChange}
-                selected={endDate}
-              />
+              <DatePicker dateFormat="yyyy/MM/dd" onChange={this.handleEndDateChange} selected={endDate} />
             </InputWrap>
             <EventSearchButton onClick={this.handleSubmit} />
           </InnerWrap>
@@ -162,9 +148,7 @@ class BoardList extends React.Component {
             </div>
             <MoreBtnWrap>
               <MoreBtnDiv>
-                <InnerBtnDiv onClick={this.handleShowMore}>
-                  더 불러오기
-                </InnerBtnDiv>
+                <InnerBtnDiv onClick={this.handleShowMore}>더 불러오기</InnerBtnDiv>
               </MoreBtnDiv>
             </MoreBtnWrap>
           </>
@@ -172,12 +156,12 @@ class BoardList extends React.Component {
           <div
             style={{
               width: "75%",
-              height: "30%",
+              minHeight: "350px",
               margin: "100px auto 0",
               textAlign: "center"
             }}
           >
-            <p>현재 등록된 이벤트가 없습니다.</p>
+            <NoEventPara>현재 등록된 이벤트가 없습니다.</NoEventPara>
           </div>
         )}
         {/* 포스트 뿌리기 끝 */}
@@ -249,6 +233,12 @@ const MoreBtnDiv = styled.div`
   height: 100%;
 
   margin: 0 auto;
+`;
+
+const NoEventPara = styled.p`
+  padding-top: 150px;
+  font-size: 25px;
+  font-weight: 300;
 `;
 
 const InnerBtnDiv = styled.div`
