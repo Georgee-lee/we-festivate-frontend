@@ -5,15 +5,7 @@ import { CardImage } from "../CardImage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
-const PostItem = ({
-  id,
-  image,
-  title,
-  building__name,
-  date,
-  current_rsvp,
-  max_rsvp
-}) => {
+const PostItem = ({ id, image, title, building__name, date, current_rsvp, max_rsvp }) => {
   return (
     <Link as={`/post/${id}`} href={`/post/${id}`}>
       <Post key={id}>
@@ -24,9 +16,7 @@ const PostItem = ({
           </h4>
           <div style={{ position: "absolute", bottom: 0, right: "10px" }}>
             <FontAwesomeIcon icon={faMapMarkerAlt} />
-            <p style={{ display: "inline-block", marginLeft: "5px" }}>
-              {building__name}
-            </p>
+            <p style={{ display: "inline-block", marginLeft: "5px" }}>{building__name}</p>
           </div>
           <p style={{ marginLeft: "10px" }}>{date}</p>
           <div style={{ position: "absolute", bottom: 0, left: "10px" }}>

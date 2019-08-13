@@ -30,11 +30,7 @@ export const SearchButton = props => {
   return (
     <SearchBtn type="button" onClick={props.onClick}>
       Search
-      <FontAwesomeIcon
-        icon={faSearch}
-        size="2x"
-        style={{ paddingLeft: 10, verticalAlign: "middle" }}
-      />
+      <FontAwesomeIcon icon={faSearch} size="2x" style={{ paddingLeft: 10, verticalAlign: "middle" }} />
     </SearchBtn>
   );
 };
@@ -52,11 +48,7 @@ export const EventSearchButton = props => {
   return (
     <EventSearchBtn type="button" onClick={props.onClick}>
       Search
-      <FontAwesomeIcon
-        icon={faSearch}
-        size="2x"
-        style={{ paddingLeft: 10, verticalAlign: "middle" }}
-      />
+      <FontAwesomeIcon icon={faSearch} size="2x" style={{ paddingLeft: 10, verticalAlign: "middle" }} />
     </EventSearchBtn>
   );
 };
@@ -70,8 +62,7 @@ export const PostWriteButton = props => {
 };
 
 const GoogleLoginBtn = styled.button`
-  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png")
-    6px 6px no-repeat;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png") 6px 6px no-repeat;
   margin: 0.2em;
   padding: 0 15px 0 46px;
   width: 100%;

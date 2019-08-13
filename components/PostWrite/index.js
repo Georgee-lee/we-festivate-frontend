@@ -58,17 +58,7 @@ class PostWrite extends React.Component {
   };
 
   handleClick = async () => {
-    const {
-      date,
-      start_time,
-      end_time,
-      title,
-      building_id,
-      place,
-      main_text,
-      max_rsvp,
-      photo_url
-    } = this.state;
+    const { date, start_time, end_time, title, building_id, place, main_text, max_rsvp, photo_url } = this.state;
     const user_pk = sessionStorage.getItem("user_pk");
 
     const data = {
@@ -84,8 +74,8 @@ class PostWrite extends React.Component {
       photo_url
     };
 
-    console.log(start_time);
-    console.log(end_time);
+    // console.log(start_time);
+    // console.log(end_time);
 
     const res = await fetch(`${_URL}/event/write`, {
       method: "POST",
@@ -112,13 +102,7 @@ class PostWrite extends React.Component {
         <Container>
           <h2 style={{ textAlign: "center" }}>이벤트 등록하기</h2>
           <TitleWrap>
-            <input
-              type="text"
-              name="title"
-              value={this.state.title}
-              onChange={e => this.handleInputChange(e)}
-              placeholder="Enter Title"
-            />
+            <input type="text" name="title" value={this.state.title} onChange={e => this.handleInputChange(e)} placeholder="Enter Title" />
           </TitleWrap>
           <BodyWrap>
             <LeftBox>
@@ -133,10 +117,7 @@ class PostWrite extends React.Component {
               </ul>
             </LeftBox>
             <RightBox>
-              <DatePicker
-                onChange={this.handleDateChange}
-                selected={this.state.date}
-              />
+              <DatePicker onChange={this.handleDateChange} selected={this.state.date} />
               <br />
               <TimePicker
                 showSecond={false}
@@ -162,10 +143,7 @@ class PostWrite extends React.Component {
                 onChange={e => this.handleInputChange(e)}
                 placeholder="Enter place"
               />
-              <SelectButton
-                onChange={this.handleBuildingSelect}
-                value={this.state.building_id}
-              />
+              <SelectButton onChange={this.handleBuildingSelect} value={this.state.building_id} />
               <input
                 style={{ width: 150, height: 45, marginTop: 18 }}
                 type="number"
@@ -184,13 +162,7 @@ class PostWrite extends React.Component {
               />
               <br />
               <br />
-              <textarea
-                rows="5"
-                col="50"
-                name="main_text"
-                style={{ width: "100%", height: "35%" }}
-                onChange={e => this.handleInputChange(e)}
-              />
+              <textarea rows="5" col="50" name="main_text" style={{ width: "100%", height: "35%" }} onChange={e => this.handleInputChange(e)} />
               <PostWriteButton onClick={this.handleClick} />
             </RightBox>
           </BodyWrap>
