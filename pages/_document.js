@@ -1,16 +1,15 @@
 /* eslint-disable react/react-in-jsx-scope */
 import Document, { Head, Main, NextScript } from "next/document";
-import flush from "styled-jsx/server";
 
 export default class RootDocument extends Document {
-  static getInitialProps({ renderPage }) {
-    const { html, head } = renderPage();
-    const styles = flush();
-
-    return { html, head, styles };
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
   }
 
   render() {
+    console.log(this.props);
+
     return (
       <html>
         <Head>
